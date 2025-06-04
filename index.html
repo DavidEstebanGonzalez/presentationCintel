@@ -42,6 +42,9 @@
                 <div class="progress-step" data-step="6" data-tooltip="Interfaz de Monitoreo">
                     <i class="fas fa-desktop"></i>
                 </div>
+                <div class="progress-step" data-step="7" data-tooltip="Control de Entrada">
+                    <i class="fas fa-door-open"></i>
+                </div>
             </div>
             
             <!-- Área de visualización del diagrama -->
@@ -209,51 +212,32 @@
                     <div class="monitoring-interface">
                         <div class="interface-header">
                             <div class="interface-title">Sistema de Monitoreo</div>
-                            <div class="interface-controls">
-                                <i class="fas fa-bell"></i>
-                                <i class="fas fa-cog"></i>
-                                <i class="fas fa-user"></i>
-                            </div>
                         </div>
                         <div class="interface-body">
                             <div class="camera-grid">
                                 <div class="camera-feed registered">
-                                    <img src="camara1.png" alt="Cam 1">
+                                    <img src="camara2.png" alt="Cam 1">
                                     <div class="feed-overlay">
-                                        <span>Entrada Principal</span>
-                                        <div class="person-tag">Ana García</div>
                                     </div>
-                                </div>
-                                <div class="camera-feed unregistered">
-                                    <img src="camara2.png" alt="Cam 2">
-                                    <div class="feed-overlay">
-                                        <span>Pasillo</span>
-                                        <div class="person-tag unknown">Desconocido</div>
-                                    </div>
-                                </div>
-                                <div class="camera-feed registered">
-                                    <img src="camara3.png" alt="Cam 3">
-                                    <div class="feed-overlay">
-                                        <span>Sala de Reuniones</span>
-                                        <div class="person-tag">Carlos Ruiz</div>
-                                    </div>
-                                </div>
-                                <div class="camera-feed">
-                                    <img src="camara4.png" alt="Cam 4">
-                                    <div class="feed-overlay">
-                                        <span>Recepción</span>
-                                    </div>
-                                </div>
+                                </div> 
                             </div>
-                            <div class="alert-panel">
-                                <div class="alert-header">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                    <span>Alertas</span>
-                                </div>
-                                <div class="alert-item">
-                                    <i class="fas fa-user-secret"></i>
-                                    <span>Persona no registrada detectada - Pasillo</span>
-                                    <span class="alert-time">Hace 2 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 7: Control de Entrada -->
+                <div class="diagram-step" id="step7">
+                    <h2>Control de Entrada</h2>
+                    <div class="monitoring-interface">
+                        <div class="interface-header">
+                            <div class="interface-title">Sistema de Control de Entrada</div>
+                        </div>
+                        <div class="interface-body">
+                            <div class="camera-grid">
+                                <div class="camera-feed registered">
+                                    <img src="controlEntrada.png" alt="Cam 1">
+                                    <div class="feed-overlay">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -276,6 +260,7 @@
                         <option value="4">4. Embeddings</option>
                         <option value="5">5. Tiempo Real</option>
                         <option value="6">6. Monitoreo</option>
+                        <option value="7">7. Control de Entrada</option>
                     </select>
                 </div>
                 <button id="nextBtn" class="nav-btn">Siguiente <i class="fas fa-arrow-right"></i></button>
