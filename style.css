@@ -3,739 +3,946 @@
     --verde-principal: #30c645;
     --verde-acento: #42e761;
     --cyan-acento: #1ed6c4;
-    --fondo-oscuro: #01010c; /* Very dark blue/black */
-
-    --blanco: #f4f4f4;          /* Blanco Roto */
+    --fondo-oscuro: #01010c;
+    --fondo-claro: #f4f4f4;
+    --blanco: #f4f4f4;
     --gris-claro: #cccccc;
-    --gris-oscuro: #333333;     /* Mantener para elementos UI secundarios */
+    --gris-oscuro: #333333;
+    --azul-oscuro: #0a1128;
+    --azul-medio: #1282a2;
+    --rojo: #e74c3c;
+    --naranja: #e67e22;
+    --amarillo: #f1c40f;
+    
+    /* Variables para modo claro/oscuro */
+    --fondo-principal: var(--fondo-oscuro);
+    --texto-principal: var(--blanco);
+    --texto-secundario: var(--gris-claro);
+    --borde: rgba(255, 255, 255, 0.1);
+    --sombra: rgba(0, 0, 0, 0.5);
+    --acento-primario: var(--verde-acento);
+    --acento-secundario: var(--cyan-acento);
+    --exito: #2ecc71;
+    --error: #e74c3c;
+}
+
+/* Estilos para modo claro */
+body.light-mode {
+    --fondo-principal: var(--fondo-claro);
+    --texto-principal: var(--azul-oscuro);
+    --texto-secundario: var(--gris-oscuro);
+    --borde: rgba(0, 0, 0, 0.1);
+    --sombra: rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 body {
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */ /* Fuente más moderna */
-    font-family: 'Poppins', sans-serif; /* Nueva fuente */
-    margin: 0;
-    background-color: var(--fondo-oscuro);
-    color: var(--blanco);
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--fondo-principal);
+    color: var(--texto-principal);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
-    font-weight: 300; /* Fuente base más ligera */
+    padding: 20px;
+    overflow-x: hidden;
 }
 
-.presentation-container {
-    width: 90%;
-    max-width: 1000px;
-    height: 600px;
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--fondo-principal);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--sombra);
+    overflow: hidden;
     position: relative;
-    /* background-color: var(--negro); */ /* Fondo más oscuro para el contenedor */
-    background-color: var(--fondo-oscuro); /* Usar el nuevo fondo oscuro */
-    overflow: hidden;
-    border-radius: 8px; /* Bordes redondeados suaves */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
-    padding-bottom: 80px; /* Añadido: Espacio inferior para los botones */
 }
 
-.slide {
+/* Estilos para logos */
+.logo-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    height: 50px;
+    object-fit: contain;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    color: var(--acento-primario);
+    font-weight: 600;
+    font-size: 2.2rem;
+}
+
+/* Contenedor del diagrama */
+.diagram-container {
+    padding: 20px;
+    position: relative;
+}
+
+/* Barra de progreso */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+    padding: 0 40px;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    right: 50px;
+    height: 3px;
+    background-color: var(--borde);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.progress-step {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--fondo-principal);
+    border: 3px solid var(--borde);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.progress-step i {
+    font-size: 1.2rem;
+    color: var(--texto-secundario);
+    transition: all 0.3s ease;
+}
+
+.progress-step.active {
+    border-color: var(--acento-primario);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(66, 231, 97, 0.5);
+}
+
+.progress-step.active i {
+    color: var(--acento-primario);
+}
+
+.progress-step.completed {
+    border-color: var(--acento-primario);
+    background-color: var(--acento-primario);
+}
+
+.progress-step.completed i {
+    color: var(--fondo-principal);
+}
+
+/* Tooltips para los pasos */
+.progress-step::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--blanco);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.progress-step:hover::after {
+    opacity: 1;
+    visibility: visible;
+    bottom: -40px;
+}
+
+/* Área de visualización del diagrama */
+.diagram-view {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+}
+
+/* Estilos para cada paso del diagrama */
+.diagram-step {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    /* height: 100%; */ /* Ajustado: Permitir que el padding inferior funcione */
-    height: calc(100% - 80px); /* Ajustado: Restar el padding del contenedor */
-    padding: 50px;
-    box-sizing: border-box;
-    /* background-color: var(--azul-oscuro); */
-    background-color: var(--fondo-oscuro); /* Usar el nuevo fondo oscuro */
+    height: 100%;
+    padding: 30px;
     opacity: 0;
-    /* transition: opacity 0.5s ease-in-out; */
-    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; /* Mantener transición moderna */
-    visibility: hidden; /* Oculta completamente */
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(50px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-    transform: translateY(20px); /* Mantener animación */
 }
 
-.slide.active {
+.diagram-step.active {
     opacity: 1;
-    visibility: visible; /* Muestra la activa */
-    z-index: 1;
-    transform: translateY(0); /* Añadido: Resetea la transformación para la animación de entrada */
-}
-
-.slide h1, .slide h2 {
-    color: var(--verde-tecnologia);
-    margin-bottom: 20px;
-}
-
-.slide h1 {
-    color: var(--blanco);
-    font-size: 3em; /* Ligeramente más grande */
-    margin-bottom: 15px;
-    font-weight: 700; /* Más grueso para el título principal */
-}
-
-.slide h2 {
-    color: var(--verde-acento);
-    font-size: 2em; /* Ligeramente más grande */
-    margin-bottom: 25px;
-    font-weight: 600; /* Un poco más grueso */
-}
-
-
-.slide p, .slide li {
-    color: var(--gris-claro);
-    font-size: 1.1em; /* Ajustar si es necesario */
-    line-height: 1.7;
-    max-width: 80%;
-    font-weight: 400; /* Peso normal para párrafos */
-}
-
-.slide ul {
-    list-style: none;
-    padding: 0;
-}
-
-.slide li::before {
-    content: "▹ ";
-    /* color: var(--verde-tecnologia); */
-    color: var(--verde-acento); /* Usar el nuevo verde acento */
-    font-weight: bold;
-    margin-right: 8px;
-}
-
-/* Estilos específicos para diapositivas */
-.monitor-layout {
-    display: flex;
-    justify-content: space-around;
-    /* width: 80%; */
-    width: 95%; /* Aumentado el ancho del layout */
-    margin: 20px 0;
-    /* Asegúrate que tenga suficiente altura y gap */
-    /* height: calc(100% - 80px); */ /* Ajustado abajo */
-    height: 300px; /* Altura fija más grande para los monitores */
-    gap: 20px; /* Aumentar un poco el espacio */
-    align-items: stretch; /* Asegurar que los monitores se estiren */
-}
-
-.monitor {
-    /* width: 28%; */ /* Ajustaremos el ancho con flex */
-    flex: 1; /* Permitir que los monitores crezcan y ocupen espacio */
-    /* height: 150px; */ /* Eliminado, la altura la dará el layout */
-    background-color: var(--gris-oscuro);
-    border: 1px solid #444;
-    color: var(--gris-claro);
-    display: flex; /* Mantenido */
-    /* justify-content: center; */ /* Cambiado en estilos específicos */
-    /* align-items: center; */ /* Cambiado en estilos específicos */
-    font-size: 1em; /* Podrías aumentarlo si quieres texto más grande */
-    border-radius: 4px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    /* Añadido de estilos simulados */
-    flex-direction: column;
-    justify-content: flex-start; /* Alinear contenido arriba */
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow: hidden;
-    gap: 8px;
-}
-
-.access-control-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.operator-station {
-    display: flex;
-    align-items: flex-end; /* Alinea en la base */
-    gap: 20px; /* Espacio entre pantalla y operario */
-    margin-bottom: 20px;
-}
-
-.screen {
-    /* width: 450px; */ /* Ancho anterior */
-    width: 600px; /* Aumentado más el ancho */
-    /* height: 280px; */ /* Alto anterior */
-    height: 350px; /* Aumentado más el alto */
-    background-color: var(--gris-oscuro);
-    border: 1px solid #444;
-    color: var(--gris-claro);
-    border-radius: 4px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: row;
-    padding: 12px; /* Un poco más de padding */
-    box-sizing: border-box;
-    gap: 12px; /* Un poco más de gap */
-    overflow: hidden;
-}
-
-/* Ajustar tamaño de fuente interno para la pantalla más grande */
-.screen .person-list {
-    flex: 1.2;
-    /* font-size: 0.8em; */ /* Tamaño anterior */
-    font-size: 0.9em; /* Aumentado para la nueva escala */
-    /* Hereda estilos de .person-list general */
-}
-.screen .person-list h4 {
-    /* font-size: 1em; */ /* Tamaño anterior */
-    font-size: 1.1em; /* Aumentado para la nueva escala */
-}
-.screen .person-item {
-    padding: 3px; /* Menos padding */
-    margin-bottom: 4px; /* Menos margen */
-}
-
-/* Añadir estilo para acceso denegado */
-.person-item.denied {
-    background-color: rgba(255, 82, 82, 0.3); /* Fondo rojo suave */
-    border-left: 3px solid #ff5252; /* Borde rojo */
-}
-.person-item.denied span {
-    color: #ffcdd2; /* Texto claro */
-}
-.person-item.denied small {
-    color: #ef9a9a; /* Texto secundario */
-}
-
-
-.operator {
-    width: 70px;
-    height: 90px;
-    /* background-color: var(--verde-principal); */
-    border-radius: 5px;
-    color: var(--blanco);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* font-size: 0.9em; */ /* Eliminado */
-    /* padding: 5px; */ /* Eliminado o ajustado */
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Estilo para el icono del operador */
-.operator .material-symbols-outlined {
-    font-size: 48px; /* Tamaño del icono */
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 300,
-    'GRAD' 0,
-    'opsz' 48
-}
-
-
-/* Navegación */
-.navigation {
-    position: fixed;
-    bottom: 20px;
-    /* left: 50%; */ /* Eliminado */
-    /* transform: translateX(-50%); */ /* Eliminado */
-    left: 0; /* Añadido */
-    right: 0; /* Añadido */
-    width: 100%; /* Añadido */
-    display: flex; /* Añadido */
-    justify-content: space-between; /* Añadido */
-    padding: 0 30px; /* Añadido padding lateral */
-    box-sizing: border-box; /* Añadido para incluir padding en el ancho */
+    visibility: visible;
+    transform: translateX(0);
     z-index: 10;
 }
 
-.navigation button {
-    /* padding: 12px 25px; */
-    width: 50px;
-    height: 50px;
-    /* margin: 0 10px; */ /* Eliminado o ajustado si es necesario */
-    margin: 0; /* Eliminado margen lateral */
-    background-color: rgba(255, 255, 255, 0.15);
-    color: var(--blanco);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.8em;
-    font-weight: 300;
-    line-height: 48px; /* Ajustar si es necesario para centrar la flecha */
+.diagram-step h2 {
+    color: var(--acento-primario);
+    margin-bottom: 30px;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
 }
 
-.navigation button:hover:not(:disabled) {
-    background-color: var(--verde-acento); /* Mantenemos el color de hover */
-    border-color: var(--verde-acento); /* Cambiar borde en hover */
-    transform: translateY(-2px) scale(1.05); /* Añadir un ligero escalado */
+/* Estilos para tooltips generales */
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: var(--blanco);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    max-width: 250px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.navigation button:disabled {
-    background-color: rgba(85, 85, 85, 0.5); /* Fondo deshabilitado semitransparente */
-    color: #777;
-    border-color: rgba(85, 85, 85, 0.7); /* Borde deshabilitado */
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none; /* Sin transformación cuando está deshabilitado */
+*:hover > .tooltip {
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Estilos para los logos en la primera diapositiva */
-.logo-container {
-    position: absolute; /* Posicionar sobre las diapositivas */
-    top: 20px;
-    left: 30px; /* Ajustar posición izquierda */
-    right: 30px; /* Ajustar posición derecha */
-    width: auto; /* Ancho automático basado en left/right */
-    /* display: flex; */ /* No necesario si left/right están definidos */
-    /* justify-content: space-between; */
-    align-items: center;
-    /* padding: 0 30px; */ /* No necesario con left/right */
-    box-sizing: border-box;
-    z-index: 5; /* Asegurar que esté sobre las diapositivas pero debajo de la navegación si es necesario */
-    display: flex; /* Volver a añadir flex para alinear logos */
-    justify-content: space-between; /* Para separar los logos */
+/* Estilos para flechas de conexión */
+.connection-arrow {
+    position: relative;
+    height: 5px;
+    background-color: var(--acento-secundario);
+    margin: 20px 0;
+    width: 150px;
+    overflow: hidden;
 }
 
-.logo {
-    max-height: 80px; /* Puedes ajustar el tamaño si es necesario */
-    max-width: 180px;
-    width: auto;
-    height: auto;
+.connection-arrow::before,
+.connection-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
 }
 
-/* Añadir estilo para la diapositiva de contacto si se necesita un layout específico */
-.contact-info {
-    /* color: var(--verde-acento); */ /* Movido a strong o similar si es necesario */
-    /* margin-right: 8px; */ /* No necesario para centrar */
-    /* font-weight: 600; */ /* Aplicar a elementos específicos como strong */
+.connection-arrow::before {
+    top: -5px;
+    border-width: 7.5px 0 7.5px 15px;
+    border-color: transparent transparent transparent var(--acento-secundario);
+}
+
+.connection-arrow::after {
+    bottom: -5px;
+    border-width: 7.5px 0 7.5px 15px;
+    border-color: transparent transparent transparent var(--acento-secundario);
+}
+
+/* Animación de paquetes de datos */
+.data-packet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--blanco);
+    border-radius: 50%;
+    top: -2.5px;
+    left: -10px;
+    animation: movePacket 3s infinite linear;
+}
+
+@keyframes movePacket {
+    0% {
+        left: -10px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        left: 160px;
+        opacity: 0;
+    }
+}
+
+/* Estilos específicos para cada paso */
+
+/* Paso 1: Registro de Usuario */
+.devices-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.device {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Asegurar que ocupe el ancho para centrar texto */
-    max-width: 500px; /* Limitar el ancho máximo para que no sea demasiado extenso */
-    /*margin-left: auto; /* Centrar el bloque si tiene max-width */
-    margin-right: auto; /* Centrar el bloque si tiene max-width */
-    text-align: center; /* Centrar el texto dentro del contenedor */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 1px solid var(--borde);
 }
 
-.contact-info p {
-    /* display: flex; */ /* No es necesario si usamos text-align: center en el padre */
-    /* justify-content: center; */ /* No es necesario */
-    align-items: center;
-    margin: 12px 0; /* Ajustar espacio vertical */
-    font-size: 1.1em;
-    line-height: 1.6;
-    /* Añadido para centrar el contenido de cada párrafo (icono + texto) */
-    display: inline-flex; /* Hacer que el párrafo se ajuste al contenido */
-    flex-direction: row; /* Alinear icono y texto en fila */
-    justify-content: center; /* Centrar icono y texto dentro del párrafo */
-    width: 100%; /* Asegurar que el párrafo ocupe el ancho para centrarse */
+.device:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Estilo para el nombre en negrita */
-.contact-info p strong {
-    color: var(--verde-acento);
-    font-weight: 600;
-    display: block; /* Para que ocupe su propia línea si es necesario */
-    margin-bottom: 5px; /* Espacio después del nombre */
+.device i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--acento-primario);
 }
 
-.contact-icon {
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
-    margin-right: 10px; /* Aumentar espacio entre icono y texto */
-    flex-shrink: 0; /* Evitar que el icono se encoja */
-}
-/* Alinea el contenido de la diapositiva de objetivo hacia arriba */
-#slide-objective {
-    justify-content: flex-start; /* Cambia la alineación vertical a la parte superior */
-    padding-top: 150px; /* Añade un espacio desde el borde superior (ajusta según necesites) */
+.registration-form {
+    width: 100%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid var(--borde);
 }
 
-/* AÑADIR estilos para la imagen SVG */
-.architecture-svg {
-    display: block; /* Cambiado de flex a block para centrar con margin: auto */
-    width: 100%;    /* Hacer que intente ocupar el ancho disponible */
-    max-width: 85%; /* Limitar el ancho máximo (mantenido) */
-    height: auto;   /* Mantener proporción (mantenido) */
-    margin: 15px auto; /* Margen superior/inferior de 15px y centrado horizontal */
+.form-field {
+    margin-bottom: 15px;
 }
 
-/* Ajustar el padding de la diapositiva de arquitectura si es necesario */
-#slide-architecture {
-    justify-content: flex-start; /* Alinear contenido arriba */
-    /* padding-top: 120px; */ /* Puedes ajustar esto si es necesario */
-    padding-top: 50px; /* Reducir si el padding general ya es suficiente */
-    /* El padding inferior general del contenedor debería ser suficiente */
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--texto-secundario);
 }
 
-/* --- NUEVO: Alinear contenido y añadir padding a slides con monitores/pantalla --- */
-#slide2, #slide2b, #slide2c, #slide3 {
-    justify-content: flex-start; /* Alinear contenido arriba */
-    padding-top: 70px; /* Añadir espacio superior (ajusta este valor) */
+.form-field input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--borde);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--texto-principal);
 }
 
-/* --- NUEVO: Ajustar margen inferior de títulos en slides específicas --- */
-#slide2 h2, #slide2b h2, #slide2c h2, #slide3 h2 {
-    margin-bottom: 35px; /* Aumentar espacio debajo del título */
-}
-
-
-/* Añadir estilo para la diapositiva de contacto si se necesita un layout específico */
-.contact-info p {
+.camera-capture {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 10px 0; /* Ajustar espacio si es necesario */
-    font-size: 1.1em;
-    line-height: 1.6; /* Añadir para mejor espaciado vertical */
+    margin-top: 20px;
 }
 
-.contact-info{
-    /* color: var(--cyan-acento); */ /* Resaltar nombres o roles */
-    color: var(--verde-acento); /* Cambiado a verde acento */
-    margin-right: 8px; /* Reducir un poco el margen */
-    font-weight: 600;
-}
-
-.contact-icon {
-    width: 18px; /* Ajusta el tamaño del icono */
-    height: 18px;
-    vertical-align: middle; /* Alinea el icono verticalmente con el texto */
-    margin-right: 8px; /* Espacio entre el icono y el texto */
-}
-
-
-.monitor {
-    /* flex: 1; */ /* Eliminado */
-    /* width: 85%; */ /* Ancho del monitor dentro de la diapositiva */
-    width: 90%; /* Aumentado el ancho */
-    /* height: 75%; */ /* Alto del monitor dentro de la diapositiva */
-    height: auto; /* Permitir que el alto se ajuste al contenido */
-    min-height: 400px; /* Establecer una altura mínima para que no sea demasiado bajo */
-    /* max-width: 800px; */ /* Limitar ancho máximo si es necesario */
-    max-width: 1000px; /* Aumentado el límite de ancho */
-    /* max-height: 450px; */ /* Eliminado o ajustado si es necesario */
-    margin: 15px auto; /* Margen superior/inferior y centrado horizontal */
-    background-color: var(--gris-oscuro);
-    border: 1px solid #444;
-    color: var(--gris-claro);
+.camera-placeholder {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed var(--acento-secundario);
+    border-radius: 10px;
     display: flex;
-    font-size: 1em;
-    border-radius: 4px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.camera-placeholder i {
+    font-size: 2rem;
+    color: var(--acento-secundario);
+    margin-bottom: 10px;
+}
+
+/* Paso 2: Verificación de Identidad */
+.verification-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.api-connection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.user-data,
+.api-server {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid var(--borde);
+}
+
+.api-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.verification-status {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.status-indicator {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 15px;
-    box-sizing: border-box;
-    overflow: hidden;
-    gap: 10px;
+    border-radius: 10px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
-/* Monitor 1: Grid de Cámaras */
-.monitor-grid {
-    padding: 5px; /* Menos padding para que quepa el grid */
+.status-indicator.success {
+    background-color: rgba(46, 204, 113, 0.2);
+    border: 1px solid rgba(46, 204, 113, 0.5);
 }
-.camera-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Grid de 2x2 */
-    gap: 5px;
-    width: 100%;
-    height: 100%;
+
+.status-indicator.failure {
+    background-color: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.5);
 }
-.camera-feed {
-    position: relative;
-    background-color: #222; /* Fondo oscuro para cada feed */
-    border-radius: 3px;
-    overflow: hidden;
+
+.status-indicator i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.status-indicator.success i {
+    color: var(--exito);
+}
+
+.status-indicator.failure i {
+    color: var(--error);
+}
+
+/* Paso 3: Almacenamiento en Backend */
+.backend-flow {
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-.camera-feed img {
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Cubrir el espacio */
-    opacity: 0.7; /* Hacer la imagen un poco oscura */
-}
-.feed-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: var(--blanco);
-    font-size: 0.7em;
-    padding: 3px 5px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-}
-.feed-overlay .count {
-    font-weight: 600;
-    color: var(--verde-acento);
 }
 
-/* Monitor 2: Detalle Cámara + Lista */
-.monitor-detail {
+.verified-data,
+.backend-server,
+.database-server {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
     display: flex;
-    flex-direction: row; /* Cambiar a fila */
-    justify-content: space-between;
-    align-items: stretch; /* Estirar elementos */
-    gap: 10px;
-    padding: 8px;
-}
-.camera-view {
-    flex: 2; /* Ocupa 2/3 del espacio */
-    background-color: #111;
-    border-radius: 4px;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    overflow: hidden;
+    border: 1px solid var(--borde);
 }
-.camera-view img {
+
+.backend-server i,
+.database-server i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--acento-primario);
+}
+
+/* Paso 4: Procesamiento de Embeddings */
+.embeddings-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.database-source,
+.embeddings-processor,
+.specialized-server {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid var(--borde);
+}
+
+.embedding-packet {
+    background-color: var(--acento-primario);
+}
+
+/* Paso 5: Procesamiento en Tiempo Real */
+.realtime-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.embeddings-source,
+.camera-api {
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid var(--borde);
+    margin-bottom: 20px;
+}
+
+.bidirectional::before,
+.bidirectional::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.bidirectional::before {
+    left: 0;
+    top: -5px;
+    border-width: 7.5px 15px 7.5px 0;
+    border-color: transparent var(--acento-secundario) transparent transparent;
+}
+
+.cameras-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.camera {
+    position: relative;
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+}
+
+.camera-feed {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.focus-overlay {
+
+.face-detection {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: var(--blanco);
-    padding: 2px 6px;
-    font-size: 0.8em;
-    border-radius: 3px;
-}
-.person-list {
-    flex: 1; /* Ocupa 1/3 del espacio */
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-    padding: 8px;
-    overflow-y: auto; /* Scroll si hay muchas personas */
-    font-size: 0.8em;
-}
-.person-list h4 {
-    margin: 0 0 8px 0;
-    font-size: 0.9em;
-    color: var(--verde-acento);
-    text-align: left;
-    border-bottom: 1px solid var(--gris-oscuro);
-    padding-bottom: 4px;
-}
-.person-item {
-    margin-bottom: 6px;
-    padding: 4px;
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.2);
-    text-align: left;
-}
-.person-item span {
-    display: block;
-    font-weight: 500;
-    color: var(--gris-claro);
-}
-.person-item small {
-    display: block;
-    color: #888;
-    font-size: 0.9em;
-}
-.person-item.identified { /* Estilo para resaltar */
-    background-color: rgba(var(--rgb-verde-acento), 0.3);
-    border-left: 3px solid var(--verde-acento);
-}
-.person-item.identified span {
-    color: var(--blanco);
+    border: 2px solid var(--acento-primario);
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
 }
 
-
-/* Monitor 3: Gráfica */
-/* --- Estilos para Monitor de Gráfica de Líneas (slide2c) --- */
-
-.monitor-chart {
-    justify-content: center; /* Centrar contenido verticalmente si hay espacio */
-    align-items: center;
-    padding: 20px; /* Más padding */
-}
-
-.monitor-chart h4 {
-    margin: 0 0 20px 0; /* Más margen inferior */
-    font-size: 1.3em; /* Un poco más grande */
-    color: var(--blanco);
-    width: 100%;
-    text-align: center;
-}
-
-.line-chart-container {
-    display: grid;
-    grid-template-areas:
-        "yaxis area"
-        ". xaxis";
-    grid-template-columns: auto 1fr; /* Columna Y auto, área ocupa el resto */
-    grid-template-rows: 1fr auto; /* Área ocupa espacio, X auto */
-    width: 95%;
-    height: 75%; /* Altura relativa al monitor */
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--gris-oscuro);
-    position: relative; /* Para posicionar ejes y área */
-    margin-bottom: 15px; /* Espacio antes de la leyenda */
-}
-
-.y-axis {
-    grid-area: yaxis;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding: 10px 5px 25px 10px; /* Padding: top right bottom left (bottom ajustado por eje X) */
-    font-size: 0.8em;
-    color: var(--gris-claro);
-    border-right: 1px solid var(--gris-oscuro); /* Línea del eje Y */
-}
-
-.x-axis {
-    grid-area: xaxis;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 5px 10px 5px 10px; /* Padding: top right bottom left */
-    font-size: 0.8em;
-    color: var(--gris-claro);
-    border-top: 1px solid var(--gris-oscuro); /* Línea del eje X */
-}
-
-.chart-area {
-    grid-area: area;
-    position: relative; /* Para posicionar los puntos de datos */
-    overflow: hidden; /* Opcional: para ocultar puntos fuera de rango */
-    background: linear-gradient(to top, rgba(var(--rgb-verde-acento), 0.02), rgba(var(--rgb-verde-acento), 0.1)); /* Fondo sutil */
-    /* Añadir padding para que las líneas no toquen los bordes */
-    padding: 5px;
-    box-sizing: border-box;
-}
-
-/* ELIMINAR ESTAS REGLAS */
-/*
-.data-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.data-point {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    transform: translate(-50%, 50%);
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.total-people .data-point {
-    background-color: var(--verde-principal);
-}
-
-.identified-people .data-point {
-    background-color: #42a5f5;
-}
-*/
-
-/* AÑADIR ESTAS REGLAS PARA SVG */
-.chart-area svg {
-    display: block; /* Asegurar que ocupe el espacio */
-    width: 100%;
-    height: 100%;
-}
-
-/* Estilos base para las líneas (asegúrate que estén definidos) */
-.chart-area polyline {
-    fill: none;
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-.total-people-line {
-    stroke: var(--verde-principal);
-}
-
-.identified-people-line {
-    stroke: #42a5f5;
-}
-
-/* --- NUEVO: Animación de dibujado para las líneas SVG --- */
-
-/* Estado inicial (línea "invisible") */
-.chart-area polyline {
-    stroke-dasharray: 1000; /* Un valor grande, mayor que la longitud de la línea */
-    stroke-dashoffset: 1000; /* Mismo valor, la línea está "desplazada" fuera de vista */
-    /* La animación se activará cuando la slide sea .active */
-}
-
-/* Estado final (cuando la slide está activa) */
-.slide.active .chart-area polyline {
-    animation: drawLine 2s ease-out forwards; /* Nombre, duración, timing, estado final */
-}
-
-/* Definición de la animación */
-@keyframes drawLine {
-    to {
-        stroke-dashoffset: 0; /* La línea se dibuja completamente */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
     }
 }
 
-/* Opcional: Retrasar la animación de la segunda línea */
-.slide.active .chart-area .identified-people-line {
-    animation-delay: 0.5s; /* Empieza medio segundo después que la primera */
+/* Paso 6: Interfaz de Monitoreo */
+.monitoring-interface {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
 }
 
+.interface-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--borde);
+}
 
-/* Leyenda (sin cambios, pero asegúrate que los colores coincidan) */
-.chart-legend {
+.interface-title {
+    font-weight: 600;
+    color: var(--acento-primario);
+}
+
+.interface-controls i {
+    margin-left: 15px;
+    cursor: pointer;
+    color: var(--texto-secundario);
+    transition: color 0.3s ease;
+}
+
+.interface-controls i:hover {
+    color: var(--acento-primario);
+}
+
+.interface-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.camera-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.camera-feed {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 150px;
+}
+
+.camera-feed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feed-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 10px;
+    color: var(--blanco);
+    font-size: 0.8rem;
+}
+
+.person-tag {
+    display: inline-block;
+    background-color: var(--acento-primario);
+    color: var(--fondo-oscuro);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-top: 5px;
+}
+
+.person-tag.unknown {
+    background-color: var(--error);
+}
+
+.alert-panel {
+    background-color: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.alert-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: var(--error);
+    font-weight: 600;
+}
+
+.alert-header i {
+    margin-right: 10px;
+}
+
+.alert-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(231, 76, 60, 0.2);
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.alert-item i {
+    margin-right: 10px;
+    color: var(--error);
+}
+
+.alert-time {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+}
+
+/* Controles de navegación */
+.navigation-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background-color: var(--acento-primario);
+    color: var(--fondo-oscuro);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: var(--verde-principal);
+    transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+    background-color: var(--gris-oscuro);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-btn i {
+    margin: 0 5px;
+}
+
+.step-jumper select {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--texto-principal);
+    border: 1px solid var(--borde);
+    cursor: pointer;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    margin: 0 5px;
+    cursor: pointer;
+    color: var(--texto-secundario);
+    transition: color 0.3s ease;
+}
+
+.theme-toggle i:hover {
+    color: var(--acento-primario);
+}
+
+/* Descripción técnica */
+.step-description {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid var(--borde);
+}
+
+.step-description h3 {
+    color: var(--acento-secundario);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Animaciones adicionales */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .progress-bar {
+        padding: 0 20px;
+    }
+    
+    .progress-step {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .progress-step i {
+        font-size: 1rem;
+    }
+    
+    .backend-flow,
+    .embeddings-flow {
+        flex-direction: column;
+    }
+    
+    .connection-arrow {
+        transform: rotate(90deg);
+        margin: 30px 0;
+    }
+    
+    .cameras-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .camera {
+        margin-bottom: 15px;
+    }
+    
+    .camera-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .navigation-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .nav-btn {
+        margin: 10px;
+    }
+}
+
+/* Modificar el contenedor de registro para que sea más compacto */
+.registration-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px; /* Reducido de 900px */
+    margin-top: 15px; /* Reducido de 20px */
+    gap: 20px; /* Reducido de 30px */
+}
+
+/* Ajustes al formulario para que sea más compacto */
+.registration-form {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px; /* Reducido de 20px */
+    border: 1px solid var(--borde);
+    max-width: 400px; /* Reducido de 450px */
+}
+
+/* Reducir el espacio entre campos del formulario */
+.form-field {
+    margin-bottom: 10px; /* Reducido de 15px */
+}
+
+/* Ajustes a la captura de cámara para que sea más compacta */
+.camera-capture {
+    flex: 1;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 10px;
-    font-size: 0.9em;
+    align-items: center;
+    max-width: 400px; /* Reducido de 450px */
+}
+
+.camera-placeholder {
     width: 100%;
+    height: 180px; /* Reducido de 250px */
+    border: 2px dashed var(--acento-secundario);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-.legend-item::before {
-    content: '';
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    margin-right: 8px;
-    vertical-align: middle;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Añadir un borde sutil a la leyenda */
+/* Reducir el tamaño del icono de la cámara */
+.camera-placeholder i {
+    font-size: 2.5rem; /* Reducido de 3rem */
+    margin-bottom: 10px; /* Reducido de 15px */
 }
 
-.legend-item.total::before {
-    background-color: var(--verde-principal); /* Mismo color que los puntos totales */
+/* Ajustar el espacio entre los dispositivos y el formulario */
+.devices-container {
+    margin-bottom: 15px; /* Reducido de 30px */
 }
 
-.legend-item.identified::before {
-    background-color: #42a5f5; /* Mismo color azul que los puntos identificados */
-}
-
-/* Eliminar estilos antiguos de la gráfica anterior si aún existen */
-.chart-container, .chart-bar, .recognized-bar, .unrecognized-bar, .chart-labels, .chart-note {
-    display: none; /* O eliminar las reglas CSS por completo */
-}
-
-/* Ajustes generales para el layout de monitores si es necesario */
-.monitor-layout {
-    /* Asegúrate que tenga suficiente altura y gap */
-    height: calc(100% - 80px); /* Ajustar si es necesario */
-    gap: 15px;
+/* Ajustar el espacio debajo del título */
+.diagram-step h2 {
+    margin-bottom: 20px; /* Reducido de 30px */
 }
