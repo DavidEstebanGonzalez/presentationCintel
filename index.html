@@ -1,222 +1,296 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)https://cintelpresentacion.netlify.app/ -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta DEMO - Infraestructura de Cámaras CINTEL</title>
+    <title>Sistema de Reconocimiento Facial - Diagrama Interactivo</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="presentation-container">
-        <!-- Contenedor para los logos - MOVIDO FUERA DE LAS DIAPOSITIVAS -->
+    <div class="main-container">
         <div class="logo-container">
             <img src="TECON_PNG.png" alt="Logo TECON" class="logo">
             <img src="CINTEL_PNG.png" alt="Logo CINTEL" class="logo">
         </div>
-
-        <!-- Diapositiva 1: Título -->
-        <div class="slide active" id="slide1">
-            <!-- Contenido de la diapositiva -->
-            <h1>Propuesta DEMO</h1>
-            <h2>Infraestructura de Cámaras y Reconocimiento Facial</h2>
-            <p>Presentado por Tecnología Con Conciencia</p>
-        </div>
-
-        <!-- NUEVA Diapositiva 2: Objetivo del Proyecto -->
-        <div class="slide" id="slide-objective">
-             <h2>Objetivo del Proyecto</h2>
-             <p>Implementar un sistema integral de videovigilancia y control de acceso basado en reconocimiento facial para mejorar la seguridad y proporcionar datos analíticos en las instalaciones de CINTEL.</p>
-             <!-- Puedes añadir más detalles o una lista si lo prefieres -->
-        </div>
-
-        <!-- NUEVA Diapositiva 3: Arquitectura del Sistema -->
-        <div class="slide" id="slide-architecture">
-            <h2>Arquitectura General del Sistema</h2>
-            <!-- REEMPLAZADO el div.architecture-diagram con img -->
-            <img src="DEMOcintel.drawio.svg" alt="Diagrama de Arquitectura del Sistema" class="architecture-svg">
-        </div>
-
-        <!-- Diapositiva 4: Sala de Monitoreo -->
-        <!-- Diapositiva 4: Sala de Monitoreo - Vista General (Monitor 1) -->
-        <div class="slide" id="slide2">
-            <h2>Sala de Monitoreo - Vista General</h2>
-            <!-- Eliminado el div.monitor-layout -->
-            <!-- Monitor 1: Vista de Cuadrícula de Cámaras -->
-            <div class="monitor monitor-grid">
-                <div class="camera-grid">
-                    <div class="camera-feed">
-                        <img src="camara1.png" alt="Cam 1">
-                        <div class="feed-overlay">
-                            <span>Sala A</span>
-                            <span class="count">P: 5 | NR: 1</span>
-                        </div>
-                    </div>
-                    <div class="camera-feed">
-                        <img src="camara2.png" alt="Cam 2">
-                        <div class="feed-overlay">
-                            <span>Lobby</span>
-                            <span class="count">P: 8 | NR: 0</span>
-                        </div>
-                    </div>
-                    <div class="camera-feed">
-                         <img src="camara3.png" alt="Cam 3">
-                         <div class="feed-overlay">
-                            <span>Pasillo B</span>
-                            <span class="count">P: 2 | NR: 2</span>
-                         </div>
-                    </div>
-                    <div class="camera-feed">
-                         <img src="camara4.png" alt="Cam 4">
-                         <div class="feed-overlay">
-                            <span>Entrada P.</span>
-                            <span class="count">P: 4 | NR: 1</span>
-                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <p>Visualización en tiempo real y gestión centralizada.</p> --> <!-- Comentado o eliminado -->
-        </div>
-
-        <!-- NUEVA Diapositiva 4b: Sala de Monitoreo - Detalle Cámara (Monitor 2) -->
-        <div class="slide" id="slide2b">
-            <h2>Sala de Monitoreo - Detalle Cámara</h2>
-             <!-- Monitor 2: Cámara Individual + Lista de Identificados -->
-             <div class="monitor monitor-detail">
-                <div class="camera-view">
-                    <img src="camara.png" alt="Cam Focus">
-                    <div class="focus-overlay">Entrada Principal</div>
-                </div>
-                <div class="person-list">
-                    <h4>Identificados:</h4>
-                    <div class="person-item">
-                        <span>Ana García</span>
-                        <small>Empresa X</small>
-                    </div>
-                    <div class="person-item">
-                        <span>Carlos Ruiz</span>
-                        <small>Visitante</small>
-                    </div>
-                     <div class="person-item">
-                        <span>Laura Méndez</span>
-                        <small>Empresa Y</small>
-                    </div>
-                    <div class="person-item identified"> <!-- Ejemplo resaltado -->
-                        <span>Juan Pérez</span>
-                        <small>CINTEL</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- NUEVA Diapositiva 4c: Sala de Monitoreo - Analítica (Monitor 3) -->
-        <div class="slide" id="slide2c">
-            <h2>Sala de Monitoreo - Analítica de Ocupación</h2>
-            <!-- Monitor 3: Gráfica de Líneas (Simulada) -->
-            <div class="monitor monitor-chart">
-                <h4>Ocupación por Hora</h4>
-                <div class="line-chart-container">
-                    <!-- Eje Y (Personas) -->
-                    <div class="y-axis">
-                        <span>20</span>
-                        <span>15</span>
-                        <span>10</span>
-                        <span>5</span>
-                        <span>0</span>
-                    </div>
-                    <!-- Área de la Gráfica -->
-                    <div class="chart-area">
-                        <!-- REEMPLAZADO: Contenido anterior con SVG -->
-                        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-                            <!-- Línea Total Personas -->
-                            <polyline class="total-people-line" points="10,75 25,60 40,25 55,40 70,50 85,70"></polyline>
-                            <!-- Línea Personas Identificadas -->
-                            <polyline class="identified-people-line" points="10,80 25,70 40,35 55,45 70,60 85,75"></polyline>
-                        </svg>
-                        <!-- FIN REEMPLAZO -->
-                    </div>
-                    <!-- Eje X (Tiempo) -->
-                    <div class="x-axis">
-                        <span>09:00</span>
-                        <span>11:00</span>
-                        <span>13:00</span>
-                        <span>15:00</span>
-                        <span>17:00</span>
-                        <span>19:00</span>
-                    </div>
-                </div>
-                <!-- Leyenda -->
-                <div class="chart-legend">
-                    <span class="legend-item total">Total Personas</span>
-                    <span class="legend-item identified">Personas Identificadas</span>
-                </div>
-            </div>
-        </div>
-       
-        <!-- Diapositiva 5: Control de Acceso (antes era slide3) -->
-        <div class="slide" id="slide3">
-            <h2>Punto de Control de Acceso</h2>
-            <div class="access-control-layout">
-                <div class="operator-station">
-                    <!-- Pantalla del Operador con contenido del Monitor 2 -->
-                    <div class="screen">
-                        <!-- Contenido copiado y adaptado de monitor-detail -->
-                        <div class="camera-view">
-                            <img src="camara.png" alt="Cam Focus">
-                            <div class="focus-overlay">Acceso Principal</div> <!-- Texto cambiado -->
-                        </div>
-                        <div class="person-list">
-                            <h4>Últimos Accesos:</h4> <!-- Título cambiado -->
-                            <div class="person-item identified">
-                                <span>Juan Pérez</span>
-                                <small>CINTEL - Acceso Permitido</small>
-                            </div>
-                            <div class="person-item">
-                                <span>Ana García</span>
-                                <small>Empresa X - Acceso Permitido</small>
-                            </div>
-                            <div class="person-item denied"> <!-- Ejemplo Denegado -->
-                                <span>Visitante 001</span>
-                                <small>No Reconocido - Alerta</small>
-                            </div>
-                        </div>
-                        <!-- Fin contenido copiado -->
-                    </div>
-                </div>
-                <p>Verificación de identidad y registro de ingresos en tiempo real.</p> <!-- Texto actualizado -->
-            </div>
-        </div>
-
         
-        <!-- NUEVA Diapositiva 7: Contacto -->
-        <div class="slide" id="slide-contact">
-            <h2>Contacto</h2>
-            <div class="contact-info">
-                <p><strong>Tecnología Con Conciencia</strong></p>
-                <p>
-                    <img src="correo.svg" alt="Email" class="contact-icon">
-                    desarrollo@tecon.com.co
-                </p>
-                <p>
-                    <img src="telefono.svg" alt="Teléfono" class="contact-icon">
-                    3223995721
-                </p>
-                <p>
-                    <img src="direccion.svg" alt="Teléfono" class="contact-icon">
-                    Cra 9 # 17 - 29, Sogamoso, Boyacá
+        <h1>Sistema de Reconocimiento Facial</h1>
+        
+        <!-- Contenedor principal del diagrama interactivo -->
+        <div class="diagram-container">
+            <!-- Barra de progreso -->
+            <div class="progress-bar">
+                <div class="progress-step active" data-step="1" data-tooltip="Registro de Usuario">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="progress-step" data-step="2" data-tooltip="Verificación de Identidad">
+                    <i class="fas fa-id-card"></i>
+                </div>
+                <div class="progress-step" data-step="3" data-tooltip="Almacenamiento en Backend">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="progress-step" data-step="4" data-tooltip="Procesamiento de Embeddings">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="progress-step" data-step="5" data-tooltip="Procesamiento en Tiempo Real">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="progress-step" data-step="6" data-tooltip="Interfaz de Monitoreo">
+                    <i class="fas fa-desktop"></i>
+                </div>
+            </div>
+            
+            <!-- Área de visualización del diagrama -->
+            <div class="diagram-view">
+                <!-- Paso 1: Registro de Usuario -->
+                <div class="diagram-step active" id="step1">
+                    <h2>Registro de Usuario</h2>
+                    <div class="devices-container">
+                        <div class="device" id="mobile-device">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Registro Móvil Web</span>
+                            <div class="tooltip">Cámara Mobile</div>
+                        </div>
+                        <div class="device" id="desktop-device">
+                            <i class="fas fa-laptop"></i>
+                            <span>Registro Web</span>
+                            <div class="tooltip">Cámara Web</div>
+                        </div>
+                    </div>
+                    <div class="registration-container">
+                        <div class="registration-form">
+                            <div class="form-field">
+                                <label>Nombre:</label>
+                                <input type="text" placeholder="Nombre completo">
+                            </div>
+                            <div class="form-field">
+                                <label>Cédula:</label>
+                                <input type="text" placeholder="Número de identificación">
+                            </div>
+                            <!-- <div class="form-field">
+                                <label>Email:</label>
+                                <input type="email" placeholder="correo@ejemplo.com">
+                            </div> -->
+                        </div>
+                        <div class="camera-capture">
+                            <div class="camera-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Captura de Rostro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paso 2: Verificación de Identidad -->
+                <div class="diagram-step" id="step2">
+                    <h2>Verificación de Identidad</h2>
+                    <div class="verification-flow">
+                        <div class="api-connection">
+                            <div class="user-data">
+                                <i class="fas fa-id-card"></i>
+                                <span>No Documento de identidad</span>
+                            </div>
+                            <div class="connection-arrow">
+                                <div class="data-packet"></div>
+                            </div>
+                            <div class="api-server">
+                                <img src="CINTEL_PNG.png" alt="API CINTEL" class="api-logo">
+                                <span>API de Verificación CINTEL</span>
+                                <div class="tooltip">API que verifica la autenticidad de la cédula contra bases de datos oficiales</div>
+                            </div>
+                        </div>
+                        <div class="verification-status">
+                            <div class="status-indicator success">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Verificación Exitosa</span>
+                            </div>
+                            <div class="status-indicator failure">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Verificación Fallida</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paso 3: Almacenamiento en Backend -->
+                <div class="diagram-step" id="step3">
+                    <h2>Almacenamiento en Backend</h2>
+                    <div class="backend-flow">
+                        <div class="verified-data">
+                            <i class="fas fa-file-check"></i>
+                            <span>Datos Verificados</span>
+                        </div>
+                        <div class="connection-arrow">
+                            <div class="data-packet"></div>
+                        </div>
+                        <div class="backend-server">
+                            <i class="fas fa-server"></i>
+                            <span>Servidor Backend</span>
+                            <div class="tooltip">Servidor que procesa y prepara los datos para almacenamiento</div>
+                        </div>
+                        <div class="connection-arrow">
+                            <div class="data-packet"></div>
+                        </div>
+                        <div class="database-server">
+                            <i class="fas fa-database"></i>
+                            <span>Firestore</span>
+                            <div class="tooltip">Base de datos NoSQL en la nube para almacenamiento seguro</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paso 4: Procesamiento de Embeddings -->
+                <div class="diagram-step" id="step4">
+                    <h2>Procesamiento de Embeddings</h2>
+                    <div class="embeddings-flow">
+                        <div class="database-source">
+                            <i class="fas fa-database"></i>
+                            <span>Firestore</span>
+                        </div>
+                        <div class="connection-arrow">
+                            <div class="data-packet"></div>
+                        </div>
+                        <div class="embeddings-processor">
+                            <i class="fas fa-brain"></i>
+                            <span>Generador de Embeddings</span>
+                            <div class="tooltip">Los embeddings son representaciones numéricas de rostros que permiten su comparación eficiente</div>
+                        </div>
+                        <div class="connection-arrow">
+                            <div class="data-packet embedding-packet"></div>
+                        </div>
+                        <div class="specialized-server">
+                            <i class="fas fa-server"></i>
+                            <span>Servidor Especializado</span>
+                            <div class="tooltip">Servidor optimizado para procesamiento de reconocimiento facial</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paso 5: Procesamiento en Tiempo Real -->
+                <div class="diagram-step" id="step5">
+                    <h2>Procesamiento en Tiempo Real</h2>
+                    <div class="realtime-flow">
+                        <div class="embeddings-source">
+                            <i class="fas fa-database"></i>
+                            <span>Base de Embeddings</span>
+                        </div>
+                        <div class="connection-arrow bidirectional">
+                            <div class="data-packet"></div>
+                        </div>
+                        <div class="camera-api">
+                            <i class="fas fa-cogs"></i>
+                            <span>API de Cámaras</span>
+                            <div class="tooltip">Sistema que procesa streams de video y detecta rostros en tiempo real</div>
+                        </div>
+                        <div class="cameras-container">
+                            <div class="camera">
+                                <img src="camara1.png" alt="Cámara 1" class="camera-feed">
+                                <div class="face-detection"></div>
+                            </div>
+                            <div class="camera">
+                                <img src="camara2.png" alt="Cámara 2" class="camera-feed">
+                                <div class="face-detection"></div>
+                            </div>
+                            <div class="camera">
+                                <img src="camara3.png" alt="Cámara 3" class="camera-feed">
+                                <div class="face-detection"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Paso 6: Interfaz de Monitoreo -->
+                <div class="diagram-step" id="step6">
+                    <h2>Interfaz de Monitoreo</h2>
+                    <div class="monitoring-interface">
+                        <div class="interface-header">
+                            <div class="interface-title">Sistema de Monitoreo</div>
+                            <div class="interface-controls">
+                                <i class="fas fa-bell"></i>
+                                <i class="fas fa-cog"></i>
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div class="interface-body">
+                            <div class="camera-grid">
+                                <div class="camera-feed registered">
+                                    <img src="camara1.png" alt="Cam 1">
+                                    <div class="feed-overlay">
+                                        <span>Entrada Principal</span>
+                                        <div class="person-tag">Ana García</div>
+                                    </div>
+                                </div>
+                                <div class="camera-feed unregistered">
+                                    <img src="camara2.png" alt="Cam 2">
+                                    <div class="feed-overlay">
+                                        <span>Pasillo</span>
+                                        <div class="person-tag unknown">Desconocido</div>
+                                    </div>
+                                </div>
+                                <div class="camera-feed registered">
+                                    <img src="camara3.png" alt="Cam 3">
+                                    <div class="feed-overlay">
+                                        <span>Sala de Reuniones</span>
+                                        <div class="person-tag">Carlos Ruiz</div>
+                                    </div>
+                                </div>
+                                <div class="camera-feed">
+                                    <img src="camara4.png" alt="Cam 4">
+                                    <div class="feed-overlay">
+                                        <span>Recepción</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alert-panel">
+                                <div class="alert-header">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>Alertas</span>
+                                </div>
+                                <div class="alert-item">
+                                    <i class="fas fa-user-secret"></i>
+                                    <span>Persona no registrada detectada - Pasillo</span>
+                                    <span class="alert-time">Hace 2 min</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles de navegación -->
+            <div class="navigation-controls">
+                <div class="theme-toggle">
+                    <i class="fas fa-moon" id="dark-mode"></i>
+                    <i class="fas fa-sun" id="light-mode"></i>
+                </div>
+                <button id="prevBtn" class="nav-btn" disabled><i class="fas fa-arrow-left"></i> Anterior</button>
+                <div class="step-jumper">
+                    <select id="stepSelector">
+                        <option value="1">1. Registro</option>
+                        <option value="2">2. Verificación</option>
+                        <option value="3">3. Almacenamiento</option>
+                        <option value="4">4. Embeddings</option>
+                        <option value="5">5. Tiempo Real</option>
+                        <option value="6">6. Monitoreo</option>
+                    </select>
+                </div>
+                <button id="nextBtn" class="nav-btn">Siguiente <i class="fas fa-arrow-right"></i></button>
+            </div>
+            
+            <!-- Descripción técnica del paso actual -->
+            <div class="step-description">
+                <h3>Descripción Técnica</h3>
+                <p id="technical-description">
+                    El proceso comienza con el registro de usuario, donde se capturan datos personales y biométricos faciales a través de dispositivos móviles o computadoras. Estos datos son la base para el reconocimiento posterior.
                 </p>
             </div>
         </div>
-
     </div>
-
-    <div class="navigation">
-        <button id="prevBtn" disabled="">⬅</button>
-        <button id="nextBtn">➡</button> 
-    </div>
-
+    
     <script src="script.js"></script>
-
-</body></html>
+</body>
+</html>
