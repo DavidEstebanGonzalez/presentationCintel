@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://cintelpresentacion.netlify.app/ -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta DEMO - Infraestructura de Cámaras CINTEL</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="css2" rel="stylesheet">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Contenedor para los logos - MOVIDO FUERA DE LAS DIAPOSITIVAS -->
+        <div class="logo-container">
+            <img src="TECON_PNG.png" alt="Logo TECON" class="logo">
+            <img src="CINTEL_PNG.png" alt="Logo CINTEL" class="logo">
+        </div>
+
+        <!-- Diapositiva 1: Título -->
+        <div class="slide active" id="slide1">
+            <!-- Contenido de la diapositiva -->
+            <h1>Propuesta DEMO</h1>
+            <h2>Infraestructura de Cámaras y Reconocimiento Facial</h2>
+            <p>Presentado por Tecnología Con Conciencia</p>
+        </div>
+
+        <!-- NUEVA Diapositiva 2: Objetivo del Proyecto -->
+        <div class="slide" id="slide-objective">
+             <h2>Objetivo del Proyecto</h2>
+             <p>Implementar un sistema integral de videovigilancia y control de acceso basado en reconocimiento facial para mejorar la seguridad y proporcionar datos analíticos en las instalaciones de CINTEL.</p>
+             <!-- Puedes añadir más detalles o una lista si lo prefieres -->
+        </div>
+
+        <!-- NUEVA Diapositiva 3: Arquitectura del Sistema -->
+        <div class="slide" id="slide-architecture">
+            <h2>Arquitectura General del Sistema</h2>
+            <!-- REEMPLAZADO el div.architecture-diagram con img -->
+            <img src="DEMOcintel.drawio.svg" alt="Diagrama de Arquitectura del Sistema" class="architecture-svg">
+        </div>
+
+        <!-- Diapositiva 4: Sala de Monitoreo -->
+        <!-- Diapositiva 4: Sala de Monitoreo - Vista General (Monitor 1) -->
+        <div class="slide" id="slide2">
+            <h2>Sala de Monitoreo - Vista General</h2>
+            <!-- Eliminado el div.monitor-layout -->
+            <!-- Monitor 1: Vista de Cuadrícula de Cámaras -->
+            <div class="monitor monitor-grid">
+                <div class="camera-grid">
+                    <div class="camera-feed">
+                        <img src="camara1.png" alt="Cam 1">
+                        <div class="feed-overlay">
+                            <span>Sala A</span>
+                            <span class="count">P: 5 | NR: 1</span>
+                        </div>
+                    </div>
+                    <div class="camera-feed">
+                        <img src="camara2.png" alt="Cam 2">
+                        <div class="feed-overlay">
+                            <span>Lobby</span>
+                            <span class="count">P: 8 | NR: 0</span>
+                        </div>
+                    </div>
+                    <div class="camera-feed">
+                         <img src="camara3.png" alt="Cam 3">
+                         <div class="feed-overlay">
+                            <span>Pasillo B</span>
+                            <span class="count">P: 2 | NR: 2</span>
+                         </div>
+                    </div>
+                    <div class="camera-feed">
+                         <img src="camara4.png" alt="Cam 4">
+                         <div class="feed-overlay">
+                            <span>Entrada P.</span>
+                            <span class="count">P: 4 | NR: 1</span>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <p>Visualización en tiempo real y gestión centralizada.</p> --> <!-- Comentado o eliminado -->
+        </div>
+
+        <!-- NUEVA Diapositiva 4b: Sala de Monitoreo - Detalle Cámara (Monitor 2) -->
+        <div class="slide" id="slide2b">
+            <h2>Sala de Monitoreo - Detalle Cámara</h2>
+             <!-- Monitor 2: Cámara Individual + Lista de Identificados -->
+             <div class="monitor monitor-detail">
+                <div class="camera-view">
+                    <img src="camara.png" alt="Cam Focus">
+                    <div class="focus-overlay">Entrada Principal</div>
+                </div>
+                <div class="person-list">
+                    <h4>Identificados:</h4>
+                    <div class="person-item">
+                        <span>Ana García</span>
+                        <small>Empresa X</small>
+                    </div>
+                    <div class="person-item">
+                        <span>Carlos Ruiz</span>
+                        <small>Visitante</small>
+                    </div>
+                     <div class="person-item">
+                        <span>Laura Méndez</span>
+                        <small>Empresa Y</small>
+                    </div>
+                    <div class="person-item identified"> <!-- Ejemplo resaltado -->
+                        <span>Juan Pérez</span>
+                        <small>CINTEL</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NUEVA Diapositiva 4c: Sala de Monitoreo - Analítica (Monitor 3) -->
+        <div class="slide" id="slide2c">
+            <h2>Sala de Monitoreo - Analítica de Ocupación</h2>
+            <!-- Monitor 3: Gráfica de Líneas (Simulada) -->
+            <div class="monitor monitor-chart">
+                <h4>Ocupación por Hora</h4>
+                <div class="line-chart-container">
+                    <!-- Eje Y (Personas) -->
+                    <div class="y-axis">
+                        <span>20</span>
+                        <span>15</span>
+                        <span>10</span>
+                        <span>5</span>
+                        <span>0</span>
+                    </div>
+                    <!-- Área de la Gráfica -->
+                    <div class="chart-area">
+                        <!-- REEMPLAZADO: Contenido anterior con SVG -->
+                        <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <!-- Línea Total Personas -->
+                            <polyline class="total-people-line" points="10,75 25,60 40,25 55,40 70,50 85,70"></polyline>
+                            <!-- Línea Personas Identificadas -->
+                            <polyline class="identified-people-line" points="10,80 25,70 40,35 55,45 70,60 85,75"></polyline>
+                        </svg>
+                        <!-- FIN REEMPLAZO -->
+                    </div>
+                    <!-- Eje X (Tiempo) -->
+                    <div class="x-axis">
+                        <span>09:00</span>
+                        <span>11:00</span>
+                        <span>13:00</span>
+                        <span>15:00</span>
+                        <span>17:00</span>
+                        <span>19:00</span>
+                    </div>
+                </div>
+                <!-- Leyenda -->
+                <div class="chart-legend">
+                    <span class="legend-item total">Total Personas</span>
+                    <span class="legend-item identified">Personas Identificadas</span>
+                </div>
+            </div>
+        </div>
+       
+        <!-- Diapositiva 5: Control de Acceso (antes era slide3) -->
+        <div class="slide" id="slide3">
+            <h2>Punto de Control de Acceso</h2>
+            <div class="access-control-layout">
+                <div class="operator-station">
+                    <!-- Pantalla del Operador con contenido del Monitor 2 -->
+                    <div class="screen">
+                        <!-- Contenido copiado y adaptado de monitor-detail -->
+                        <div class="camera-view">
+                            <img src="camara.png" alt="Cam Focus">
+                            <div class="focus-overlay">Acceso Principal</div> <!-- Texto cambiado -->
+                        </div>
+                        <div class="person-list">
+                            <h4>Últimos Accesos:</h4> <!-- Título cambiado -->
+                            <div class="person-item identified">
+                                <span>Juan Pérez</span>
+                                <small>CINTEL - Acceso Permitido</small>
+                            </div>
+                            <div class="person-item">
+                                <span>Ana García</span>
+                                <small>Empresa X - Acceso Permitido</small>
+                            </div>
+                            <div class="person-item denied"> <!-- Ejemplo Denegado -->
+                                <span>Visitante 001</span>
+                                <small>No Reconocido - Alerta</small>
+                            </div>
+                        </div>
+                        <!-- Fin contenido copiado -->
+                    </div>
+                </div>
+                <p>Verificación de identidad y registro de ingresos en tiempo real.</p> <!-- Texto actualizado -->
+            </div>
+        </div>
+
+        
+        <!-- NUEVA Diapositiva 7: Contacto -->
+        <div class="slide" id="slide-contact">
+            <h2>Contacto</h2>
+            <div class="contact-info">
+                <p><strong>Tecnología Con Conciencia</strong></p>
+                <p>
+                    <img src="correo.svg" alt="Email" class="contact-icon">
+                    desarrollo@tecon.com.co
+                </p>
+                <p>
+                    <img src="telefono.svg" alt="Teléfono" class="contact-icon">
+                    3223995721
+                </p>
+                <p>
+                    <img src="direccion.svg" alt="Teléfono" class="contact-icon">
+                    Cra 9 # 17 - 29, Sogamoso, Boyacá
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" disabled="">⬅</button>
+        <button id="nextBtn">➡</button> 
+    </div>
+
+    <script src="script.js"></script>
+
+</body></html>

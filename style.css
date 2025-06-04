@@ -1,0 +1,741 @@
+/* Paleta de Colores */
+:root {
+    --verde-principal: #30c645;
+    --verde-acento: #42e761;
+    --cyan-acento: #1ed6c4;
+    --fondo-oscuro: #01010c; /* Very dark blue/black */
+
+    --blanco: #f4f4f4;          /* Blanco Roto */
+    --gris-claro: #cccccc;
+    --gris-oscuro: #333333;     /* Mantener para elementos UI secundarios */
+}
+
+body {
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */ /* Fuente más moderna */
+    font-family: 'Poppins', sans-serif; /* Nueva fuente */
+    margin: 0;
+    background-color: var(--fondo-oscuro);
+    color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-weight: 300; /* Fuente base más ligera */
+}
+
+.presentation-container {
+    width: 90%;
+    max-width: 1000px;
+    height: 600px;
+    position: relative;
+    /* background-color: var(--negro); */ /* Fondo más oscuro para el contenedor */
+    background-color: var(--fondo-oscuro); /* Usar el nuevo fondo oscuro */
+    overflow: hidden;
+    border-radius: 8px; /* Bordes redondeados suaves */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+    padding-bottom: 80px; /* Añadido: Espacio inferior para los botones */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 100%; */ /* Ajustado: Permitir que el padding inferior funcione */
+    height: calc(100% - 80px); /* Ajustado: Restar el padding del contenedor */
+    padding: 50px;
+    box-sizing: border-box;
+    /* background-color: var(--azul-oscuro); */
+    background-color: var(--fondo-oscuro); /* Usar el nuevo fondo oscuro */
+    opacity: 0;
+    /* transition: opacity 0.5s ease-in-out; */
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; /* Mantener transición moderna */
+    visibility: hidden; /* Oculta completamente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform: translateY(20px); /* Mantener animación */
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible; /* Muestra la activa */
+    z-index: 1;
+    transform: translateY(0); /* Añadido: Resetea la transformación para la animación de entrada */
+}
+
+.slide h1, .slide h2 {
+    color: var(--verde-tecnologia);
+    margin-bottom: 20px;
+}
+
+.slide h1 {
+    color: var(--blanco);
+    font-size: 3em; /* Ligeramente más grande */
+    margin-bottom: 15px;
+    font-weight: 700; /* Más grueso para el título principal */
+}
+
+.slide h2 {
+    color: var(--verde-acento);
+    font-size: 2em; /* Ligeramente más grande */
+    margin-bottom: 25px;
+    font-weight: 600; /* Un poco más grueso */
+}
+
+
+.slide p, .slide li {
+    color: var(--gris-claro);
+    font-size: 1.1em; /* Ajustar si es necesario */
+    line-height: 1.7;
+    max-width: 80%;
+    font-weight: 400; /* Peso normal para párrafos */
+}
+
+.slide ul {
+    list-style: none;
+    padding: 0;
+}
+
+.slide li::before {
+    content: "▹ ";
+    /* color: var(--verde-tecnologia); */
+    color: var(--verde-acento); /* Usar el nuevo verde acento */
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+/* Estilos específicos para diapositivas */
+.monitor-layout {
+    display: flex;
+    justify-content: space-around;
+    /* width: 80%; */
+    width: 95%; /* Aumentado el ancho del layout */
+    margin: 20px 0;
+    /* Asegúrate que tenga suficiente altura y gap */
+    /* height: calc(100% - 80px); */ /* Ajustado abajo */
+    height: 300px; /* Altura fija más grande para los monitores */
+    gap: 20px; /* Aumentar un poco el espacio */
+    align-items: stretch; /* Asegurar que los monitores se estiren */
+}
+
+.monitor {
+    /* width: 28%; */ /* Ajustaremos el ancho con flex */
+    flex: 1; /* Permitir que los monitores crezcan y ocupen espacio */
+    /* height: 150px; */ /* Eliminado, la altura la dará el layout */
+    background-color: var(--gris-oscuro);
+    border: 1px solid #444;
+    color: var(--gris-claro);
+    display: flex; /* Mantenido */
+    /* justify-content: center; */ /* Cambiado en estilos específicos */
+    /* align-items: center; */ /* Cambiado en estilos específicos */
+    font-size: 1em; /* Podrías aumentarlo si quieres texto más grande */
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Añadido de estilos simulados */
+    flex-direction: column;
+    justify-content: flex-start; /* Alinear contenido arriba */
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    gap: 8px;
+}
+
+.access-control-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.operator-station {
+    display: flex;
+    align-items: flex-end; /* Alinea en la base */
+    gap: 20px; /* Espacio entre pantalla y operario */
+    margin-bottom: 20px;
+}
+
+.screen {
+    /* width: 450px; */ /* Ancho anterior */
+    width: 600px; /* Aumentado más el ancho */
+    /* height: 280px; */ /* Alto anterior */
+    height: 350px; /* Aumentado más el alto */
+    background-color: var(--gris-oscuro);
+    border: 1px solid #444;
+    color: var(--gris-claro);
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    padding: 12px; /* Un poco más de padding */
+    box-sizing: border-box;
+    gap: 12px; /* Un poco más de gap */
+    overflow: hidden;
+}
+
+/* Ajustar tamaño de fuente interno para la pantalla más grande */
+.screen .person-list {
+    flex: 1.2;
+    /* font-size: 0.8em; */ /* Tamaño anterior */
+    font-size: 0.9em; /* Aumentado para la nueva escala */
+    /* Hereda estilos de .person-list general */
+}
+.screen .person-list h4 {
+    /* font-size: 1em; */ /* Tamaño anterior */
+    font-size: 1.1em; /* Aumentado para la nueva escala */
+}
+.screen .person-item {
+    padding: 3px; /* Menos padding */
+    margin-bottom: 4px; /* Menos margen */
+}
+
+/* Añadir estilo para acceso denegado */
+.person-item.denied {
+    background-color: rgba(255, 82, 82, 0.3); /* Fondo rojo suave */
+    border-left: 3px solid #ff5252; /* Borde rojo */
+}
+.person-item.denied span {
+    color: #ffcdd2; /* Texto claro */
+}
+.person-item.denied small {
+    color: #ef9a9a; /* Texto secundario */
+}
+
+
+.operator {
+    width: 70px;
+    height: 90px;
+    /* background-color: var(--verde-principal); */
+    border-radius: 5px;
+    color: var(--blanco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 0.9em; */ /* Eliminado */
+    /* padding: 5px; */ /* Eliminado o ajustado */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para el icono del operador */
+.operator .material-symbols-outlined {
+    font-size: 48px; /* Tamaño del icono */
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 300,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+
+/* Navegación */
+.navigation {
+    position: fixed;
+    bottom: 20px;
+    /* left: 50%; */ /* Eliminado */
+    /* transform: translateX(-50%); */ /* Eliminado */
+    left: 0; /* Añadido */
+    right: 0; /* Añadido */
+    width: 100%; /* Añadido */
+    display: flex; /* Añadido */
+    justify-content: space-between; /* Añadido */
+    padding: 0 30px; /* Añadido padding lateral */
+    box-sizing: border-box; /* Añadido para incluir padding en el ancho */
+    z-index: 10;
+}
+
+.navigation button {
+    /* padding: 12px 25px; */
+    width: 50px;
+    height: 50px;
+    /* margin: 0 10px; */ /* Eliminado o ajustado si es necesario */
+    margin: 0; /* Eliminado margen lateral */
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--blanco);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8em;
+    font-weight: 300;
+    line-height: 48px; /* Ajustar si es necesario para centrar la flecha */
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navigation button:hover:not(:disabled) {
+    background-color: var(--verde-acento); /* Mantenemos el color de hover */
+    border-color: var(--verde-acento); /* Cambiar borde en hover */
+    transform: translateY(-2px) scale(1.05); /* Añadir un ligero escalado */
+}
+
+.navigation button:disabled {
+    background-color: rgba(85, 85, 85, 0.5); /* Fondo deshabilitado semitransparente */
+    color: #777;
+    border-color: rgba(85, 85, 85, 0.7); /* Borde deshabilitado */
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none; /* Sin transformación cuando está deshabilitado */
+}
+
+/* Estilos para los logos en la primera diapositiva */
+.logo-container {
+    position: absolute; /* Posicionar sobre las diapositivas */
+    top: 20px;
+    left: 30px; /* Ajustar posición izquierda */
+    right: 30px; /* Ajustar posición derecha */
+    width: auto; /* Ancho automático basado en left/right */
+    /* display: flex; */ /* No necesario si left/right están definidos */
+    /* justify-content: space-between; */
+    align-items: center;
+    /* padding: 0 30px; */ /* No necesario con left/right */
+    box-sizing: border-box;
+    z-index: 5; /* Asegurar que esté sobre las diapositivas pero debajo de la navegación si es necesario */
+    display: flex; /* Volver a añadir flex para alinear logos */
+    justify-content: space-between; /* Para separar los logos */
+}
+
+.logo {
+    max-height: 80px; /* Puedes ajustar el tamaño si es necesario */
+    max-width: 180px;
+    width: auto;
+    height: auto;
+}
+
+/* Añadir estilo para la diapositiva de contacto si se necesita un layout específico */
+.contact-info {
+    /* color: var(--verde-acento); */ /* Movido a strong o similar si es necesario */
+    /* margin-right: 8px; */ /* No necesario para centrar */
+    /* font-weight: 600; */ /* Aplicar a elementos específicos como strong */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Asegurar que ocupe el ancho para centrar texto */
+    max-width: 500px; /* Limitar el ancho máximo para que no sea demasiado extenso */
+    /*margin-left: auto; /* Centrar el bloque si tiene max-width */
+    margin-right: auto; /* Centrar el bloque si tiene max-width */
+    text-align: center; /* Centrar el texto dentro del contenedor */
+}
+
+.contact-info p {
+    /* display: flex; */ /* No es necesario si usamos text-align: center en el padre */
+    /* justify-content: center; */ /* No es necesario */
+    align-items: center;
+    margin: 12px 0; /* Ajustar espacio vertical */
+    font-size: 1.1em;
+    line-height: 1.6;
+    /* Añadido para centrar el contenido de cada párrafo (icono + texto) */
+    display: inline-flex; /* Hacer que el párrafo se ajuste al contenido */
+    flex-direction: row; /* Alinear icono y texto en fila */
+    justify-content: center; /* Centrar icono y texto dentro del párrafo */
+    width: 100%; /* Asegurar que el párrafo ocupe el ancho para centrarse */
+}
+
+/* Estilo para el nombre en negrita */
+.contact-info p strong {
+    color: var(--verde-acento);
+    font-weight: 600;
+    display: block; /* Para que ocupe su propia línea si es necesario */
+    margin-bottom: 5px; /* Espacio después del nombre */
+}
+
+.contact-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 10px; /* Aumentar espacio entre icono y texto */
+    flex-shrink: 0; /* Evitar que el icono se encoja */
+}
+/* Alinea el contenido de la diapositiva de objetivo hacia arriba */
+#slide-objective {
+    justify-content: flex-start; /* Cambia la alineación vertical a la parte superior */
+    padding-top: 150px; /* Añade un espacio desde el borde superior (ajusta según necesites) */
+}
+
+/* AÑADIR estilos para la imagen SVG */
+.architecture-svg {
+    display: block; /* Cambiado de flex a block para centrar con margin: auto */
+    width: 100%;    /* Hacer que intente ocupar el ancho disponible */
+    max-width: 85%; /* Limitar el ancho máximo (mantenido) */
+    height: auto;   /* Mantener proporción (mantenido) */
+    margin: 15px auto; /* Margen superior/inferior de 15px y centrado horizontal */
+}
+
+/* Ajustar el padding de la diapositiva de arquitectura si es necesario */
+#slide-architecture {
+    justify-content: flex-start; /* Alinear contenido arriba */
+    /* padding-top: 120px; */ /* Puedes ajustar esto si es necesario */
+    padding-top: 50px; /* Reducir si el padding general ya es suficiente */
+    /* El padding inferior general del contenedor debería ser suficiente */
+}
+
+/* --- NUEVO: Alinear contenido y añadir padding a slides con monitores/pantalla --- */
+#slide2, #slide2b, #slide2c, #slide3 {
+    justify-content: flex-start; /* Alinear contenido arriba */
+    padding-top: 70px; /* Añadir espacio superior (ajusta este valor) */
+}
+
+/* --- NUEVO: Ajustar margen inferior de títulos en slides específicas --- */
+#slide2 h2, #slide2b h2, #slide2c h2, #slide3 h2 {
+    margin-bottom: 35px; /* Aumentar espacio debajo del título */
+}
+
+
+/* Añadir estilo para la diapositiva de contacto si se necesita un layout específico */
+.contact-info p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0; /* Ajustar espacio si es necesario */
+    font-size: 1.1em;
+    line-height: 1.6; /* Añadir para mejor espaciado vertical */
+}
+
+.contact-info{
+    /* color: var(--cyan-acento); */ /* Resaltar nombres o roles */
+    color: var(--verde-acento); /* Cambiado a verde acento */
+    margin-right: 8px; /* Reducir un poco el margen */
+    font-weight: 600;
+}
+
+.contact-icon {
+    width: 18px; /* Ajusta el tamaño del icono */
+    height: 18px;
+    vertical-align: middle; /* Alinea el icono verticalmente con el texto */
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+
+.monitor {
+    /* flex: 1; */ /* Eliminado */
+    /* width: 85%; */ /* Ancho del monitor dentro de la diapositiva */
+    width: 90%; /* Aumentado el ancho */
+    /* height: 75%; */ /* Alto del monitor dentro de la diapositiva */
+    height: auto; /* Permitir que el alto se ajuste al contenido */
+    min-height: 400px; /* Establecer una altura mínima para que no sea demasiado bajo */
+    /* max-width: 800px; */ /* Limitar ancho máximo si es necesario */
+    max-width: 1000px; /* Aumentado el límite de ancho */
+    /* max-height: 450px; */ /* Eliminado o ajustado si es necesario */
+    margin: 15px auto; /* Margen superior/inferior y centrado horizontal */
+    background-color: var(--gris-oscuro);
+    border: 1px solid #444;
+    color: var(--gris-claro);
+    display: flex;
+    font-size: 1em;
+    border-radius: 4px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    gap: 10px;
+}
+
+/* Monitor 1: Grid de Cámaras */
+.monitor-grid {
+    padding: 5px; /* Menos padding para que quepa el grid */
+}
+.camera-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Grid de 2x2 */
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+}
+.camera-feed {
+    position: relative;
+    background-color: #222; /* Fondo oscuro para cada feed */
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.camera-feed img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubrir el espacio */
+    opacity: 0.7; /* Hacer la imagen un poco oscura */
+}
+.feed-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--blanco);
+    font-size: 0.7em;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.feed-overlay .count {
+    font-weight: 600;
+    color: var(--verde-acento);
+}
+
+/* Monitor 2: Detalle Cámara + Lista */
+.monitor-detail {
+    display: flex;
+    flex-direction: row; /* Cambiar a fila */
+    justify-content: space-between;
+    align-items: stretch; /* Estirar elementos */
+    gap: 10px;
+    padding: 8px;
+}
+.camera-view {
+    flex: 2; /* Ocupa 2/3 del espacio */
+    background-color: #111;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+.camera-view img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.focus-overlay {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: var(--blanco);
+    padding: 2px 6px;
+    font-size: 0.8em;
+    border-radius: 3px;
+}
+.person-list {
+    flex: 1; /* Ocupa 1/3 del espacio */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 8px;
+    overflow-y: auto; /* Scroll si hay muchas personas */
+    font-size: 0.8em;
+}
+.person-list h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
+    color: var(--verde-acento);
+    text-align: left;
+    border-bottom: 1px solid var(--gris-oscuro);
+    padding-bottom: 4px;
+}
+.person-item {
+    margin-bottom: 6px;
+    padding: 4px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+.person-item span {
+    display: block;
+    font-weight: 500;
+    color: var(--gris-claro);
+}
+.person-item small {
+    display: block;
+    color: #888;
+    font-size: 0.9em;
+}
+.person-item.identified { /* Estilo para resaltar */
+    background-color: rgba(var(--rgb-verde-acento), 0.3);
+    border-left: 3px solid var(--verde-acento);
+}
+.person-item.identified span {
+    color: var(--blanco);
+}
+
+
+/* Monitor 3: Gráfica */
+/* --- Estilos para Monitor de Gráfica de Líneas (slide2c) --- */
+
+.monitor-chart {
+    justify-content: center; /* Centrar contenido verticalmente si hay espacio */
+    align-items: center;
+    padding: 20px; /* Más padding */
+}
+
+.monitor-chart h4 {
+    margin: 0 0 20px 0; /* Más margen inferior */
+    font-size: 1.3em; /* Un poco más grande */
+    color: var(--blanco);
+    width: 100%;
+    text-align: center;
+}
+
+.line-chart-container {
+    display: grid;
+    grid-template-areas:
+        "yaxis area"
+        ". xaxis";
+    grid-template-columns: auto 1fr; /* Columna Y auto, área ocupa el resto */
+    grid-template-rows: 1fr auto; /* Área ocupa espacio, X auto */
+    width: 95%;
+    height: 75%; /* Altura relativa al monitor */
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gris-oscuro);
+    position: relative; /* Para posicionar ejes y área */
+    margin-bottom: 15px; /* Espacio antes de la leyenda */
+}
+
+.y-axis {
+    grid-area: yaxis;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 5px 25px 10px; /* Padding: top right bottom left (bottom ajustado por eje X) */
+    font-size: 0.8em;
+    color: var(--gris-claro);
+    border-right: 1px solid var(--gris-oscuro); /* Línea del eje Y */
+}
+
+.x-axis {
+    grid-area: xaxis;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 10px 5px 10px; /* Padding: top right bottom left */
+    font-size: 0.8em;
+    color: var(--gris-claro);
+    border-top: 1px solid var(--gris-oscuro); /* Línea del eje X */
+}
+
+.chart-area {
+    grid-area: area;
+    position: relative; /* Para posicionar los puntos de datos */
+    overflow: hidden; /* Opcional: para ocultar puntos fuera de rango */
+    background: linear-gradient(to top, rgba(var(--rgb-verde-acento), 0.02), rgba(var(--rgb-verde-acento), 0.1)); /* Fondo sutil */
+    /* Añadir padding para que las líneas no toquen los bordes */
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* ELIMINAR ESTAS REGLAS */
+/*
+.data-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.data-point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.total-people .data-point {
+    background-color: var(--verde-principal);
+}
+
+.identified-people .data-point {
+    background-color: #42a5f5;
+}
+*/
+
+/* AÑADIR ESTAS REGLAS PARA SVG */
+.chart-area svg {
+    display: block; /* Asegurar que ocupe el espacio */
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos base para las líneas (asegúrate que estén definidos) */
+.chart-area polyline {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.total-people-line {
+    stroke: var(--verde-principal);
+}
+
+.identified-people-line {
+    stroke: #42a5f5;
+}
+
+/* --- NUEVO: Animación de dibujado para las líneas SVG --- */
+
+/* Estado inicial (línea "invisible") */
+.chart-area polyline {
+    stroke-dasharray: 1000; /* Un valor grande, mayor que la longitud de la línea */
+    stroke-dashoffset: 1000; /* Mismo valor, la línea está "desplazada" fuera de vista */
+    /* La animación se activará cuando la slide sea .active */
+}
+
+/* Estado final (cuando la slide está activa) */
+.slide.active .chart-area polyline {
+    animation: drawLine 2s ease-out forwards; /* Nombre, duración, timing, estado final */
+}
+
+/* Definición de la animación */
+@keyframes drawLine {
+    to {
+        stroke-dashoffset: 0; /* La línea se dibuja completamente */
+    }
+}
+
+/* Opcional: Retrasar la animación de la segunda línea */
+.slide.active .chart-area .identified-people-line {
+    animation-delay: 0.5s; /* Empieza medio segundo después que la primera */
+}
+
+
+/* Leyenda (sin cambios, pero asegúrate que los colores coincidan) */
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+.legend-item::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Añadir un borde sutil a la leyenda */
+}
+
+.legend-item.total::before {
+    background-color: var(--verde-principal); /* Mismo color que los puntos totales */
+}
+
+.legend-item.identified::before {
+    background-color: #42a5f5; /* Mismo color azul que los puntos identificados */
+}
+
+/* Eliminar estilos antiguos de la gráfica anterior si aún existen */
+.chart-container, .chart-bar, .recognized-bar, .unrecognized-bar, .chart-labels, .chart-note {
+    display: none; /* O eliminar las reglas CSS por completo */
+}
+
+/* Ajustes generales para el layout de monitores si es necesario */
+.monitor-layout {
+    /* Asegúrate que tenga suficiente altura y gap */
+    height: calc(100% - 80px); /* Ajustar si es necesario */
+    gap: 15px;
+}
