@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Actualizar el estado de los botones
         prevBtn.disabled = stepNumber === 1;
-        nextBtn.disabled = stepNumber === 6;
+        nextBtn.disabled = stepNumber === 7;
         
         // Actualizar el estado actual
         currentStep = stepNumber;
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     nextBtn.addEventListener('click', () => {
-        if (currentStep < 6) {
+        if (currentStep < 7) {
             showStep(currentStep + 1);
         }
     });
@@ -203,3 +203,23 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.diagram-container').classList.add('loaded');
     }, 500);
 });
+
+    const totalSteps = 7; // Actualiza el número total de pasos
+
+    function updateNavigation() {
+        // Actualizar visibilidad de botones de navegación
+        if (currentStep === 1) {
+            prevBtn.disabled = true;
+        } else {
+            prevBtn.disabled = false;
+        }
+
+        if (currentStep === totalSteps) {
+            nextBtn.disabled = true;
+        } else {
+            nextBtn.disabled = false;
+        }
+
+        // Actualizar el selector de pasos
+        stepSelector.value = currentStep;
+    }
