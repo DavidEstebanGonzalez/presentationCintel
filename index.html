@@ -24,33 +24,54 @@
         <div class="diagram-container">
             <!-- Barra de progreso -->
             <div class="progress-bar">
-                <div class="progress-step active" data-step="1" data-tooltip="Registro de Usuario">
+                <div class="progress-step active" data-step="0" data-tooltip="Introducción">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="progress-step" data-step="1" data-tooltip="Objetivo del Desarrollo">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="progress-step" data-step="2" data-tooltip="Registro de Usuario">
                     <i class="fas fa-user-plus"></i>
                 </div>
-                <div class="progress-step" data-step="2" data-tooltip="Verificación de Identidad">
+                <div class="progress-step" data-step="3" data-tooltip="Verificación de Identidad">
                     <i class="fas fa-id-card"></i>
                 </div>
-                <div class="progress-step" data-step="3" data-tooltip="Almacenamiento en Backend">
+                <div class="progress-step" data-step="4" data-tooltip="Almacenamiento en Backend">
                     <i class="fas fa-database"></i>
                 </div>
-                <div class="progress-step" data-step="4" data-tooltip="Procesamiento de Embeddings">
+                <div class="progress-step" data-step="5" data-tooltip="Procesamiento de Embeddings">
                     <i class="fas fa-microchip"></i>
                 </div>
-                <div class="progress-step" data-step="5" data-tooltip="Procesamiento en Tiempo Real">
+                <div class="progress-step" data-step="6" data-tooltip="Procesamiento en Tiempo Real">
                     <i class="fas fa-video"></i>
                 </div>
-                <div class="progress-step" data-step="6" data-tooltip="Interfaz de Monitoreo">
+                <div class="progress-step" data-step="7" data-tooltip="Interfaz de Monitoreo">
                     <i class="fas fa-desktop"></i>
                 </div>
-                <div class="progress-step" data-step="7" data-tooltip="Control de Entrada">
+                <div class="progress-step" data-step="8" data-tooltip="Control de Entrada">
                     <i class="fas fa-door-open"></i>
                 </div>
             </div>
             
             <!-- Área de visualización del diagrama -->
             <div class="diagram-view">
-                <!-- Paso 1: Registro de Usuario -->
-                <div class="diagram-step active" id="step1">
+                <!-- Diapositiva 0: Introducción -->
+                <div class="diagram-step active" id="step0">
+                    <h1 class="Title">Propuesta</h1>
+                    <h2 class="Subtitle">Estructura de Cámaras y Reconocimiento Facial</h2>
+                    <h3 class="Subtitle">Presentado por tecnología con conciencia</h3>
+                </div>
+
+                <!-- Nuevo Paso 1: Objetivo del desarrollo -->
+                <div class="diagram-step" id="step1">
+                    <h2>Objetivo</h2>
+                    <p style="max-width:600px; text-align:center; margin: 0 auto;">
+                        Desarrollar un sistema integral de reconocimiento facial que permita la identificación y control de acceso de personas en tiempo real, integrando múltiples cámaras y dispositivos, garantizando seguridad, eficiencia y facilidad de uso para los usuarios y administradores.
+                    </p>
+                </div>
+
+                <!-- Paso 2: Registro de Usuario (antes era step1, ahora step2) -->
+                <div class="diagram-step" id="step2">
                     <h2>Registro de Usuario</h2>
                     <div class="devices-container">
                         <div class="device" id="mobile-device">
@@ -88,8 +109,8 @@
                     </div>
                 </div>
                 
-                <!-- Paso 2: Verificación de Identidad -->
-                <div class="diagram-step" id="step2">
+                <!-- Paso 3: Verificación de Identidad (antes era step2, ahora step3) -->
+                <div class="diagram-step" id="step3">
                     <h2>Verificación de Identidad</h2>
                     <div class="verification-flow">
                         <div class="api-connection">
@@ -119,8 +140,8 @@
                     </div>
                 </div>
                 
-                <!-- Paso 3: Almacenamiento en Backend -->
-                <div class="diagram-step" id="step3">
+                <!-- Paso 4: Almacenamiento en Backend (antes era step3, ahora step4) -->
+                <div class="diagram-step" id="step4">
                     <h2>Almacenamiento en Backend</h2>
                     <div class="backend-flow">
                         <div class="verified-data">
@@ -146,8 +167,8 @@
                     </div>
                 </div>
                 
-                <!-- Paso 4: Procesamiento de Embeddings -->
-                <div class="diagram-step" id="step4">
+                <!-- Paso 5: Procesamiento de Embeddings (antes era step4, ahora step5) -->
+                <div class="diagram-step" id="step5">
                     <h2>Procesamiento de Embeddings</h2>
                     <div class="embeddings-flow">
                         <div class="database-source">
@@ -173,8 +194,8 @@
                     </div>
                 </div>
                 
-                <!-- Paso 5: Procesamiento en Tiempo Real -->
-                <div class="diagram-step" id="step5">
+                <!-- Paso 6: Procesamiento en Tiempo Real (antes era step5, ahora step6) -->
+                <div class="diagram-step" id="step6">
                     <h2>Procesamiento en Tiempo Real</h2>
                     <div class="realtime-flow">
                         <div class="embeddings-source">
@@ -206,8 +227,8 @@
                     </div>
                 </div>
                 
-                <!-- Paso 6: Interfaz de Monitoreo -->
-                <div class="diagram-step" id="step6">
+                <!-- Paso 7: Interfaz de Monitoreo (antes era step6, ahora step7) -->
+                <div class="diagram-step" id="step7">
                     <h2>Interfaz de Monitoreo</h2>
                     <div class="monitoring-interface">
                         <div class="interface-header">
@@ -225,8 +246,8 @@
                     </div>
                 </div>
 
-                <!-- Paso 7: Control de Entrada -->
-                <div class="diagram-step" id="step7">
+                <!-- Paso 8: Control de Entrada (antes era step7, ahora step8) -->
+                <div class="diagram-step" id="step8">
                     <h2>Control de Entrada</h2>
                     <div class="monitoring-interface">
                         <div class="interface-header">
@@ -245,6 +266,14 @@
                 </div>
             </div>
             
+            <!-- Descripción técnica del paso actual -->
+            <div class="step-description">
+                <h3>Descripción Técnica</h3>
+                <p id="technical-description">
+                    El proceso comienza con el registro de usuario, donde se capturan datos personales y biométricos faciales a través de dispositivos móviles o computadoras. Estos datos son la base para el reconocimiento posterior.
+                </p>
+            </div>
+
             <!-- Controles de navegación -->
             <div class="navigation-controls">
                 <div class="theme-toggle">
@@ -254,24 +283,18 @@
                 <button id="prevBtn" class="nav-btn" disabled><i class="fas fa-arrow-left"></i> Anterior</button>
                 <div class="step-jumper">
                     <select id="stepSelector">
-                        <option value="1">1. Registro</option>
-                        <option value="2">2. Verificación</option>
-                        <option value="3">3. Almacenamiento</option>
-                        <option value="4">4. Embeddings</option>
-                        <option value="5">5. Tiempo Real</option>
-                        <option value="6">6. Monitoreo</option>
-                        <option value="7">7. Control de Entrada</option>
+                        <option value="0">0. Introducción</option>
+                        <option value="1">1. Objetivo</option>
+                        <option value="2">2. Registro</option>
+                        <option value="3">3. Verificación</option>
+                        <option value="4">4. Almacenamiento</option>
+                        <option value="5">5. Embeddings</option>
+                        <option value="6">6. Tiempo Real</option>
+                        <option value="7">7. Monitoreo</option>
+                        <option value="8">8. Control de Entrada</option>
                     </select>
                 </div>
                 <button id="nextBtn" class="nav-btn">Siguiente <i class="fas fa-arrow-right"></i></button>
-            </div>
-            
-            <!-- Descripción técnica del paso actual -->
-            <div class="step-description">
-                <h3>Descripción Técnica</h3>
-                <p id="technical-description">
-                    El proceso comienza con el registro de usuario, donde se capturan datos personales y biométricos faciales a través de dispositivos móviles o computadoras. Estos datos son la base para el reconocimiento posterior.
-                </p>
             </div>
         </div>
     </div>

@@ -10,16 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const technicalDescription = document.getElementById('technical-description');
     
     // Estado actual
-    let currentStep = 1;
+    let currentStep = 0; // Asegúrate que el paso inicial es 0
     
     // Descripciones técnicas para cada paso
     const descriptions = {
-        1: "El proceso comienza con el registro de usuario, donde se capturan datos personales y biométricos faciales a través de dispositivos móviles o computadoras. Estos datos son la base para el reconocimiento posterior.",
-        2: "La verificación de identidad conecta con la API de CINTEL para validar la autenticidad de la cédula proporcionada. Este paso es crucial para garantizar que los datos biométricos estén asociados a una identidad real y verificada.",
-        3: "Los datos verificados se envían al servidor backend, que los procesa y almacena de forma segura en Firestore (Firebase). La base de datos mantiene la información encriptada y organizada para su posterior recuperación.",
-        4: "Los embeddings son representaciones matemáticas de los rostros (vectores multidimensionales) que permiten comparar eficientemente las características faciales. Se generan mediante algoritmos de redes neuronales convolucionales.",
-        5: "El sistema procesa en tiempo real los streams de video de múltiples cámaras, detectando rostros y comparándolos con los embeddings almacenados para identificar a las personas registradas.",
-        6: "La interfaz de monitoreo permite visualizar todas las cámaras, con marcación de rostros identificados vs. desconocidos, y genera alertas cuando se detectan personas no registradas en áreas restringidas."
+        2: "El proceso comienza con el registro de usuario, donde se capturan datos personales y biométricos faciales a través de dispositivos móviles o computadoras. Estos datos son la base para el reconocimiento posterior.",
+        3: "La verificación de identidad conecta con la API de CINTEL para validar la autenticidad de la cédula proporcionada. Este paso es crucial para garantizar que los datos biométricos estén asociados a una identidad real y verificada.",
+        4: "Los datos verificados se envían al servidor backend, que los procesa y almacena de forma segura en Firestore (Firebase). La base de datos mantiene la información encriptada y organizada para su posterior recuperación.",
+        5: "Los embeddings son representaciones matemáticas de los rostros (vectores multidimensionales) que permiten comparar eficientemente las características faciales. Se generan mediante algoritmos de redes neuronales convolucionales.",
+        6: "El sistema procesa en tiempo real los streams de video de múltiples cámaras, detectando rostros y comparándolos con los embeddings almacenados para identificar a las personas registradas.",
+        7: "La interfaz de monitoreo permite visualizar todas las cámaras, con marcación de rostros identificados vs. desconocidos, y genera alertas cuando se detectan personas no registradas en áreas restringidas.",
+        8: "El sistema enviara notificiacaiones cuando se detecte una persona registrada, mostrara a que hora y que persona fue detectada, ademas de mostrar un historial de detecciones."
     };
     
     // Función para mostrar un paso específico
@@ -28,37 +29,42 @@ document.addEventListener('DOMContentLoaded', () => {
         diagramSteps.forEach(step => {
             step.classList.remove('active');
         });
-        
+
         // Actualizar la barra de progreso
         progressSteps.forEach((step, index) => {
-            const stepNum = index + 1;
-            if (stepNum < stepNumber) {
+            if (index < stepNumber) {
                 step.classList.add('completed');
                 step.classList.remove('active');
-            } else if (stepNum === stepNumber) {
+            } else if (index === stepNumber) {
                 step.classList.add('active');
                 step.classList.remove('completed');
             } else {
                 step.classList.remove('active', 'completed');
             }
         });
-        
+
         // Mostrar el paso actual
         document.getElementById(`step${stepNumber}`).classList.add('active');
-        
+
         // Actualizar el selector de pasos
         stepSelector.value = stepNumber;
-        
+
         // Actualizar la descripción técnica
-        technicalDescription.textContent = descriptions[stepNumber];
-        
+        if (descriptions[stepNumber]) {
+            technicalDescription.textContent = descriptions[stepNumber];
+            technicalDescription.parentElement.style.display = '';
+        } else {
+            technicalDescription.textContent = '';
+            technicalDescription.parentElement.style.display = 'none';
+        }
+
         // Actualizar el estado de los botones
-        prevBtn.disabled = stepNumber === 1;
-        nextBtn.disabled = stepNumber === 7;
-        
+        prevBtn.disabled = stepNumber === 0;
+        nextBtn.disabled = stepNumber === 8;
+
         // Actualizar el estado actual
         currentStep = stepNumber;
-        
+
         // Iniciar animaciones específicas para cada paso
         startStepAnimations(stepNumber);
     }
@@ -147,13 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Event Listeners
     prevBtn.addEventListener('click', () => {
-        if (currentStep > 1) {
+        if (currentStep > 0) { // Permite ir hasta el paso 0
             showStep(currentStep - 1);
         }
     });
     
     nextBtn.addEventListener('click', () => {
-        if (currentStep < 7) {
+        if (currentStep < 8) {
             showStep(currentStep + 1);
         }
     });
@@ -196,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Mostrar el primer paso al cargar
-    showStep(1);
+    showStep(0); // Cambia 1 por 0
     
     // Añadir clase para animación inicial
     setTimeout(() => {

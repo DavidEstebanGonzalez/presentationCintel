@@ -26,6 +26,12 @@
     --error: #e74c3c;
 }
 
+h1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    color: white
+}
+
 /* Estilos para modo claro */
 body.light-mode {
     --fondo-principal: var(--fondo-claro);
@@ -78,10 +84,10 @@ body {
     object-fit: contain;
 }
 
-h1 {
+h1.Title {
     text-align: center;
     padding: 20px;
-    color: var(--acento-primario);
+    color: #42e761;
     font-weight: 600;
     font-size: 2.2rem;
 }
@@ -203,13 +209,20 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-content: center;
 }
+
 
 .diagram-step.active {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente el contenido */
+    height: 100%;
 }
 
 .diagram-step h2 {
@@ -574,9 +587,24 @@ h1 {
 }
 
 .camera-feed {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    height: auto;         /* Permite que la altura se ajuste al contenido */
+    min-height: 250px;    /* Altura mínima para mantener el diseño */
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.camera-feed img {
+    width: 100%;
+    height: auto;         /* Mantiene la proporción original de la imagen */
+    object-fit: contain;  /* Evita recortes, muestra la imagen completa */
+    display: block;
+    background: #222;     /* Opcional: fondo para imágenes transparentes */
+    max-height: 350px;    /* Ajusta según el espacio disponible */
 }
 
 .face-detection {
@@ -669,14 +697,21 @@ h1 {
     position: relative;
     border-radius: 5px;
     overflow: hidden;
-    height: 250px; /* Aumenta la altura de las cámaras */
-    width: 100%; /* Asegura que la cámara ocupe el ancho disponible */
+    height: auto;         /* Permite que la altura se ajuste al contenido */
+    min-height: 250px;    /* Altura mínima para mantener el diseño */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .camera-feed img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;         /* Mantiene la proporción original de la imagen */
+    object-fit: contain;  /* Evita recortes, muestra la imagen completa */
+    display: block;
+    background: #222;     /* Opcional: fondo para imágenes transparentes */
+    max-height: 250px;    /* Ajusta según el espacio disponible */
 }
 
 .feed-overlay {
@@ -958,4 +993,35 @@ h1 {
 /* Ajustar el espacio debajo del título */
 .diagram-step h2 {
     margin-bottom: 20px; /* Reducido de 30px */
+}
+
+h2.Subtitle {
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+h3.Subtitle {
+    text-align: center;
+    color: gray;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#step6 .cameras-container .camera-feed img {
+    background: #f4f4f4 !important;
+    object-fit: contain !important;   /* Muestra la imagen completa sin recorte */
+    width: auto;                      /* Mantiene el ancho original */
+    height: auto;                     /* Mantiene la altura original */
+    max-width: 100%;                  /* No excede el ancho del contenedor */
+    max-height: 250px;                /* Ajusta la altura máxima si lo deseas */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Fondo blanco para imágenes en paso 7 y 8 (Interfaz de Monitoreo y Control de Entrada) */
+#step7 .camera-feed img,
+#step8 .camera-feed img {
+    background: black;
 }
