@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     nextBtn.addEventListener('click', () => {
-        if (currentStep < 8) {
+        if (currentStep < 9) {
             showStep(currentStep + 1);
         }
     });
