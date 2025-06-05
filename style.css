@@ -27,10 +27,19 @@
 }
 
 h1{
+    padding-top: 1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    color: white
+    color: var(--acento-primario)
 }
+
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
 
 /* Estilos para modo claro */
 body.light-mode {
