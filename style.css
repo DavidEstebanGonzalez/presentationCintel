@@ -499,7 +499,7 @@ h1 {
 
 /* Paso 4: Procesamiento de Embeddings */
 .embeddings-flow {
-    padding-top: 5rem;
+    padding-top: 4rem;
     padding-bottom: 2rem;
     display: flex;
     align-items: center;
@@ -524,6 +524,13 @@ h1 {
     background-color: var(--acento-primario);
 }
 
+.image-embeddings {
+    width: 350px;
+    border-radius: 5%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
 /* Paso 5: Procesamiento en Tiempo Real */
 .realtime-flow {
     display: flex;
@@ -533,7 +540,7 @@ h1 {
 }
 
 .embeddings-source,
-.camera-api {
+.camera-api, .face-recognition {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
