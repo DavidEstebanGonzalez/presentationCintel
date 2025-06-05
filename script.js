@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Descripciones técnicas para cada paso
     const descriptions = {
         2: "El proceso comienza con el registro de usuario, donde se capturan datos personales y biométricos faciales a través de dispositivos móviles o computadoras. Estos datos son la base para el reconocimiento posterior.",
-        3: "La verificación de identidad conecta con la API de CINTEL para validar la autenticidad de la cédula proporcionada. Este paso es crucial para garantizar que los datos biométricos estén asociados a una identidad real y verificada.",
-        4: "Los datos verificados se envían al servidor backend, que los procesa y almacena de forma segura en Firestore (Firebase). La base de datos mantiene la información encriptada y organizada para su posterior recuperación.",
-        5: "Los embeddings son representaciones matemáticas de los rostros (vectores multidimensionales) que permiten comparar eficientemente las características faciales. Se generan mediante algoritmos de redes neuronales convolucionales.",
+        3: "La verificación de identidad conecta con la API de CINTEL para validar la autenticidad de la cédula proporcionada. Este paso es importante para garantizar que los datos biométricos estén asociados a una identidad real y verificada.",
+        4: "Los datos verificados se envían al servidor backend, que los procesa y almacena de forma segura. La base de datos mantiene la información encriptada y organizada.",
+        5: "Los embeddings son representaciones matemáticas de los rostros (vectores multidimensionales) que permiten comparar eficientemente las características faciales.",
         6: "El sistema procesa en tiempo real los streams de video de múltiples cámaras, detectando rostros y comparándolos con los embeddings almacenados para identificar a las personas registradas.",
-        7: "La interfaz de monitoreo permite visualizar todas las cámaras, con marcación de rostros identificados vs. desconocidos, y genera alertas cuando se detectan personas no registradas en áreas restringidas.",
+        7: "La interfaz de monitoreo permite visualizar todas las cámaras, con marcación de rostros identificados vs. desconocidos.",
         8: "El sistema enviara notificiacaiones cuando se detecte una persona registrada, mostrara a que hora y que persona fue detectada, ademas de mostrar un historial de detecciones."
     };
     
