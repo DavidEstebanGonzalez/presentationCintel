@@ -36,11 +36,14 @@
                 <div class="progress-step" data-step="3" data-tooltip="Verificación de Identidad">
                     <i class="fas fa-id-card"></i>
                 </div>
-                <div class="progress-step" data-step="4" data-tooltip="Almacenamiento en Backend">
+
+                  
+                <div class="progress-step" data-step="4" data-tooltip="Almacenamiento en Base de datos">
                     <i class="fas fa-database"></i>
                 </div>
-                <div class="progress-step" data-step="5" data-tooltip="Procesamiento de Embeddings">
-                    <i class="fas fa-microchip"></i>
+                <div class="progress-step" data-step="5" data-tooltip="Almacenamiento de Embeddings">
+                    <i class="fas fa-database"></i>
+
                 </div>
                 <div class="progress-step" data-step="6" data-tooltip="Procesamiento en Tiempo Real">
                     <i class="fas fa-video"></i>
@@ -95,7 +98,7 @@
                                 <input type="text" placeholder="Nombre completo">
                             </div>
                             <div class="form-field">
-                                <label>Cédula:</label>
+                                <label>No Documento de identidad:</label>
                                 <input type="text" placeholder="Número de identificación">
                             </div>
                             <!-- <div class="form-field">
@@ -127,7 +130,7 @@
                             <div class="api-server">
                                 <img src="CINTEL_PNG.png" alt="API CINTEL" class="api-logo">
                                 <span>API de Verificación CINTEL</span>
-                                <div class="tooltip">API que verifica la autenticidad de la cédula contra bases de datos oficiales</div>
+                                <div class="tooltip">Verifica si el Documento esta registrado</div>
                             </div>
                         </div>
                         <div class="verification-status">
@@ -143,13 +146,15 @@
                     </div>
                 </div>
                 
-                <!-- Paso 4: Almacenamiento en Backend (antes era step3, ahora step4) -->
+
+                <!-- Paso 4: Almacenamiento en Backend -->
                 <div class="diagram-step" id="step4">
-                    <h2>Almacenamiento en Backend</h2>
+                    <h2>Almacenamiento en la Base de datos</h2>
+                  
                     <div class="backend-flow">
                         <div class="verified-data">
                             <i class="fas fa-file-check"></i>
-                            <span>Datos Verificados</span>
+                            <span>Datos personales y Embeddings</span>
                         </div>
                         <div class="connection-arrow">
                             <div class="data-packet"></div>
@@ -157,61 +162,74 @@
                         <div class="backend-server">
                             <i class="fas fa-server"></i>
                             <span>Servidor Backend</span>
-                            <div class="tooltip">Servidor que procesa y prepara los datos para almacenamiento</div>
+                            <div class="tooltip">Procesa los datos para su almacenamiento</div>
                         </div>
                         <div class="connection-arrow">
                             <div class="data-packet"></div>
                         </div>
                         <div class="database-server">
                             <i class="fas fa-database"></i>
-                            <span>Firestore</span>
+                            <span>Base de datos</span>
                             <div class="tooltip">Base de datos NoSQL en la nube para almacenamiento seguro</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Paso 5: Procesamiento de Embeddings (antes era step4, ahora step5) -->
+
+                <!-- Paso 5: Almacenamiento de Embeddings -->
                 <div class="diagram-step" id="step5">
-                    <h2>Procesamiento de Embeddings</h2>
+                    <h2>Almacenamiento de Embeddings</h2>
+                  
                     <div class="embeddings-flow">
                         <div class="database-source">
                             <i class="fas fa-database"></i>
-                            <span>Firestore</span>
+                            <span>Base de datos</span>
                         </div>
                         <div class="connection-arrow">
                             <div class="data-packet"></div>
                         </div>
                         <div class="embeddings-processor">
                             <i class="fas fa-brain"></i>
-                            <span>Generador de Embeddings</span>
+                            <span>Almacenamiento de Embeddings</span>
                             <div class="tooltip">Los embeddings son representaciones numéricas de rostros que permiten su comparación eficiente</div>
                         </div>
-                        <div class="connection-arrow">
+                        <!-- <div class="connection-arrow">
                             <div class="data-packet embedding-packet"></div>
                         </div>
                         <div class="specialized-server">
-                            <i class="fas fa-server"></i>
-                            <span>Servidor Especializado</span>
+                            <i class="fas fa-cogs"></i>
+                            <span>API de cámaras</span>
                             <div class="tooltip">Servidor optimizado para procesamiento de reconocimiento facial</div>
-                        </div>
+                        </div> -->
                     </div>
+                    <img class="image-embeddings" src="embeddings.png" alt="ejemplo_embeddings">
                 </div>
                 
                 <!-- Paso 6: Procesamiento en Tiempo Real (antes era step5, ahora step6) -->
                 <div class="diagram-step" id="step6">
                     <h2>Procesamiento en Tiempo Real</h2>
                     <div class="realtime-flow">
-                        <div class="embeddings-source">
-                            <i class="fas fa-database"></i>
-                            <span>Base de Embeddings</span>
-                        </div>
-                        <div class="connection-arrow bidirectional">
-                            <div class="data-packet"></div>
-                        </div>
-                        <div class="camera-api">
-                            <i class="fas fa-cogs"></i>
-                            <span>API de Cámaras</span>
-                            <div class="tooltip">Sistema que procesa streams de video y detecta rostros en tiempo real</div>
+                        <div class="embeddings-flow">
+                            <div class="embeddings-source">
+                                <i class="fas fa-database"></i>
+                                <span>Base de Embeddings</span>
+                            </div>
+                            <div class="connection-arrow bidirectional">
+                                <div class="data-packet"></div>
+                            </div>
+                            <div class="camera-api">
+                                <i class="fas fa-cogs"></i>
+                                <span>API de Cámaras</span>
+                                <div class="tooltip">Sistema que procesa streams de video y detecta rostros en tiempo real</div>
+                            </div>
+                            <div class="connection-arrow bidirectional">
+                                <div class="data-packet"></div>
+                            </div>
+                            <div class="face-recognition">
+                                <i class="fas fa-camera"></i>
+                                <span>Reconocimiento Facial</span>
+                                <div class="tooltip">Sistema que identifica rostros en tiempo real</div>
+                            </div>
                         </div>
                         <div class="cameras-container">
                             <div class="camera">

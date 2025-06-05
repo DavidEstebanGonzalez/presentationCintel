@@ -409,6 +409,7 @@ h1.Title {
 
 /* Paso 2: Verificación de Identidad */
 .verification-flow {
+    padding-top: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -482,6 +483,7 @@ h1.Title {
 
 /* Paso 3: Almacenamiento en Backend */
 .backend-flow {
+    padding-top: 7rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -510,6 +512,8 @@ h1.Title {
 
 /* Paso 4: Procesamiento de Embeddings */
 .embeddings-flow {
+    padding-top: 4rem;
+    padding-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -533,6 +537,13 @@ h1.Title {
     background-color: var(--acento-primario);
 }
 
+.image-embeddings {
+    width: 350px;
+    border-radius: 5%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
 /* Paso 5: Procesamiento en Tiempo Real */
 .realtime-flow {
     display: flex;
@@ -542,7 +553,7 @@ h1.Title {
 }
 
 .embeddings-source,
-.camera-api {
+.camera-api, .face-recognition {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
@@ -719,7 +730,7 @@ h1.Title {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent);
     padding: 10px;
     color: var(--blanco);
     font-size: 0.8rem;
